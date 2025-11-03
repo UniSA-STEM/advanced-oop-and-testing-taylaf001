@@ -1,8 +1,8 @@
 '''
-File: main.py
-Description: main.py file is used for testing purposes.
+File: health.py
+Description: health.py contains code for the health management aspect of the zoo.
 Author: Tayla Fontanabella
-ID: taylaf001
+ID: Taylaf001
 Username: Fonty005
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
