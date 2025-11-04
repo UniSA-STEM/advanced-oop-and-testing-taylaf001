@@ -130,7 +130,7 @@ class Animal(ABC):
             raise ValueError(f"Invalid space. Please choose from {self.animal_PreferredSpace}.")
 
     def __str__(self):
-        return f"Your animal, {self.get_name()}, has been successfully added to the Zoo."
+        return f"Your animal, {self.get_name()}, has been successfully introduced into the Zoo.\n"
 
     # Common animal methods to be utilised by child classes. Abstract methods utilised to allow for customisation via child classes.
     @abstractmethod

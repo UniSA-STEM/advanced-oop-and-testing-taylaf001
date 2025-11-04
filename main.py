@@ -110,35 +110,40 @@ def enclosure():
         is_venomous=False
     )
 
-    meep = Mammal(
-        name="Meep",
-        classification="Mammal",
-        species="Elephant",
-        age=18,
-        dietary_requirements="Herbivore",
-        specialisation_needed = "Mammal",
-        preferred_environment = "Tropical",
-        preferred_space = "Medium",
-        fur_type = "Coarse"
-    )
+    #meep = Mammal(
+        #name="Meep",
+        #classification="Mammal", # Testing classifications
+        #species="Crocodile",
+        #age=89,
+        #dietary_requirements="Carnivore",
+        #specialisation_needed = "Mammal",
+        #preferred_environment = "Savanna", # Testing environments
+        #preferred_space = "Large", # Testing space variations
+        #fur_type = "Coarse"
+    #)
 
-    matilda = Bird(
-        name="Matilda",
-        classification="Bird",
-        species="Lorikeet",
-        age=18,
-        dietary_requirements="Omnivore",
-        specialisation_needed="Avian",
-        preferred_environment="Urban",
-        preferred_space="Medium",
-        can_Fly=True
-    )
+    #matilda = Bird(
+        #name="Matilda",
+        #classification="Bird",
+        #species="Lorikeet",
+        #age=18,
+        #dietary_requirements="Omnivore",
+        #specialisation_needed="Avian",
+        #preferred_environment="Urban",
+        #preferred_space="Medium",
+        #can_Fly=True
+    #)
+
+    # Add compatible animals to enclosure
 
     enclosure1.add_animal(john)
     enclosure1.add_animal(beep)
-    # Testing adding an animal that is not the enclosures assigned species
-    enclosure1.add_animal(meep)
-    enclosure1.add_animal(matilda)
+
+    # Testing adding animals that are not the enclosures assigned species
+
+    #enclosure1.add_animal(meep)
+    #enclosure1.add_animal(matilda)
+
     enclosure1.enclosure_status()
 
 enclosure = enclosure()

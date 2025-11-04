@@ -45,6 +45,7 @@ class Enclosure:
 
         self.__current_Capacity = 0
 
+        print(self)
 
     def get_max_Capacity(self):
         return self.__max_Capacity
@@ -86,15 +87,18 @@ class Enclosure:
         self.__current_Capacity = current_Capacity
 
     def add_animal(self, animal):
-        if animal.get_classification() == self.__animal_Assigned and self.__current_Capacity <= self.__max_Capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size:
+        if animal.get_classification() == self.__animal_Assigned and self.__current_Capacity < self.__max_Capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size:
             self.set_animalsEnclosed(animal)
             self.set_current_Capacity(self.get_current_Capacity()+1)
+            print(f"{animal.get_name()} has been successfully introduced into the {self.__enclosure_Name}.\n")
         elif animal.get_classification() == self.__animal_Assigned and self.__current_Capacity == self.__max_Capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size:
-            print("Enclosure capacity full. Remove an animal or build a new enclosure.")
-        elif animal.get_classification() == self.__animal_Assigned and self.__current_Capacity == self.__max_Capacity and animal.get_preferred_environment() != self.__environment and animal.get_preferred_space() == self.__size:
-            print("Enclosure environment not animal's preferred environment.")
-        elif animal.get_classification() == self.__animal_Assigned and self.__current_Capacity == self.__max_Capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() != self.__size:
-            print("Enclosure size not animal's preferred enclosure size.")
+            raise ValueError(f"Enclosure capacity full. Remove an animal or build a new enclosure.")
+        elif animal.get_classification() == self.__animal_Assigned and self.__current_Capacity < self.__max_Capacity and animal.get_preferred_environment() != self.__environment and animal.get_preferred_space() == self.__size:
+            raise ValueError(f"Enclosure environment not {animal.get_name()}'s preferred environment.")
+        elif animal.get_classification() == self.__animal_Assigned and self.__current_Capacity < self.__max_Capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() != self.__size:
+            raise ValueError(f"Enclosure size not {animal.get_name()}'s preferred enclosure size.")
+        elif animal.get_classification() == self.__animal_Assigned and self.__current_Capacity < self.__max_Capacity and animal.get_preferred_environment() != self.__environment and animal.get_preferred_space() != self.__size:
+            raise ValueError(f"Enclosure size and environment do not meet {animal.get_name()}'s preferred specifications.")
         else:
             raise ValueError(f"Animal must match species assigned to enclosure: {self.__animal_Assigned}")
 
@@ -121,3 +125,6 @@ class Enclosure:
         print("-----")
         self.list_animals()
         print("----------------------")
+
+    def __str__(self):
+        return f"{self.__enclosure_Name} has successfully been added to the zoo.\n"
