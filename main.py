@@ -9,6 +9,7 @@ This is my own work as defined by the University's Academic Integrity Policy.
 from mammal import Mammal
 from bird import Bird
 from reptile import Reptile
+from enclosure import Enclosure
 
 
 # BASIC ANIMAL CLASS TESTS
@@ -75,5 +76,55 @@ def reptile():
     john.bask_InSun()
     john.hunt()
 
+#ENCLOSURE TEST
+def enclosure():
+    enclosure1 = Enclosure(
+        enclosure_Name="Reptile Enclosure",
+        size="Small",
+        environment="Desert",
+        animal_Assigned="Reptile",
+        max_Capacity=5
+    )
 
-reptile = reptile()
+    john = Reptile(
+        name="John",
+        classification="Reptile",
+        species="Snake",
+        age=27,
+        dietary_requirements="Carnivore",
+        specialisation_needed="Exotic",
+        preferred_environment="Desert",
+        preferred_space="Small",
+        is_venomous=True
+    )
+
+    beep = Reptile(
+        name="Beep",
+        classification="Reptile",
+        species="Lizard",
+        age=32,
+        dietary_requirements="Carnivore",
+        specialisation_needed="Exotic",
+        preferred_environment="Desert",
+        preferred_space="Small",
+        is_venomous=False
+    )
+
+    meep = Mammal(
+        name="Meep",
+        classification="Mammal",
+        species="Elephant",
+        age=18,
+        dietary_requirements="Herbivore",
+        specialisation_needed = "Mammal",
+        preferred_environment = "Tropical",
+        preferred_space = "Medium",
+        fur_type = "Coarse"
+    )
+
+    enclosure1.add_animal(john)
+    enclosure1.add_animal(beep)
+    enclosure1.add_animal(meep) # Testing adding an animal that is not the enclosures assigned species
+    enclosure1.enclosure_status()
+
+enclosure = enclosure()
