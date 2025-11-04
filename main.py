@@ -122,9 +122,23 @@ def enclosure():
         fur_type = "Coarse"
     )
 
+    matilda = Bird(
+        name="Matilda",
+        classification="Bird",
+        species="Lorikeet",
+        age=18,
+        dietary_requirements="Omnivore",
+        specialisation_needed="Avian",
+        preferred_environment="Urban",
+        preferred_space="Medium",
+        can_Fly=True
+    )
+
     enclosure1.add_animal(john)
     enclosure1.add_animal(beep)
-    enclosure1.add_animal(meep) # Testing adding an animal that is not the enclosures assigned species
+    # Testing adding an animal that is not the enclosures assigned species
+    enclosure1.add_animal(meep)
+    enclosure1.add_animal(matilda)
     enclosure1.enclosure_status()
 
 enclosure = enclosure()

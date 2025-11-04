@@ -65,7 +65,7 @@ class Animal(ABC):
             raise TypeError("Preferred space must be a string")
 
         #self.__health = Health() #NEED TO DO HEALTH CLASS BEFORE DOING THIS
-
+        print(self)
     # Getters for attributes
     def get_name(self):
         return self.__name
@@ -110,7 +110,6 @@ class Animal(ABC):
     def set_specialisation_needed(self, specialisation_needed):
         required_specialist = self.animal_PreferredSpecialists.get(self.__classification)
         if specialisation_needed == required_specialist:
-            print(f"Your {self.__species} has been assigned to a {required_specialist} veterinarian.")
             self.__specialisation_needed = specialisation_needed
         else:
             raise ValueError(f"Your {self.__species} requires a {required_specialist} veterinarian.")
@@ -120,7 +119,6 @@ class Animal(ABC):
         for environment in preferredEnvironment:
             if environment == preferred_environment:
                 self.__preferred_environment = preferred_environment
-                return print(f"Your {self.__species}'s preferred environment is {preferred_environment}.")
         if preferred_environment not in preferredEnvironment:
             raise ValueError(f"Invalid environment for {self.__species}. Please choose from {preferredEnvironment}.")
 
@@ -128,9 +126,11 @@ class Animal(ABC):
     def set_preferred_space(self, preferred_space):
         if preferred_space in self.animal_PreferredSpace:
             self.__preferred_space = preferred_space
-            print(f"Your {self.__species}'s preferred space is {preferred_space}.")
         else:
             raise ValueError(f"Invalid space. Please choose from {self.animal_PreferredSpace}.")
+
+    def __str__(self):
+        return f"Your animal, {self.get_name()}, has been successfully added to the Zoo."
 
     # Common animal methods to be utilised by child classes. Abstract methods utilised to allow for customisation via child classes.
     @abstractmethod

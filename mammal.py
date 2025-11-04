@@ -26,7 +26,6 @@ class Mammal(Animal):
             raise ValueError(f"Invalid fur type. Please choose from {self.fur_types}.")
         else:
             self.__fur_type = fur_type
-            print(f"{self.get_name()}'s fur type is {self.__fur_type}.")
 
     def making_sounds(self):
         print(f"{self.get_name()} makes a sound.. *grrrr*")
