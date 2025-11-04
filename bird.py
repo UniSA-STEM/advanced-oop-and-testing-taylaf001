@@ -1,6 +1,6 @@
 '''
-File: mammals.py
-Description: This file contains code for the Animal child class 'mammals'
+File: bird.py
+Description: This file contains code for the Animal child class 'birds'.
 Author: Tayla Fontanabella
 ID: Taylaf001
 Username: Fonty005
