@@ -20,3 +20,7 @@ class Staff(ABC):
             self.__role = role
         else:
             raise TypeError("Role must be a string.")
+
+    def assigned_animals(self):
+
+    def assigned_enclosures(self):
