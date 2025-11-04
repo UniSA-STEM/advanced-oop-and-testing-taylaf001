@@ -1,6 +1,6 @@
 '''
 File: mammal.py
-Description: This file contains code for the Animal child class 'mammals'
+Description: This file contains code for the Animal child class 'mammal'
 Author: Tayla Fontanabella
 ID: Taylaf001
 Username: Fonty005
@@ -14,35 +14,34 @@ class Mammal(Animal):
         Animal.__init__(self, name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space)
 
         if isinstance(fur_type, str):
-            self.__fur_type = fur_type
+            self.set_fur_type(fur_type)
         else:
-            print("Fur type must be a string.")
+            raise TypeError("Fur type must be a string.")
 
     def get_fur_type(self):
         return self.__fur_type
 
     def set_fur_type(self, fur_type):
         if fur_type not in self.fur_types:
-            print("Invalid fur type. Please choose one from the following list:")
-            for fur_type in self.fur_types:
-                print(f"{fur_type}\n")
+            raise ValueError(f"Invalid fur type. Please choose from {self.fur_types}.")
         else:
             self.__fur_type = fur_type
+            print(f"{self.get_name()}'s fur type is {self.__fur_type}.")
 
     def making_sounds(self):
-        print(f"{Animal.get_name(self)} makes a sound.. *grrrr*")
+        print(f"{self.get_name()} makes a sound.. *grrrr*")
 
     def eating(self):
-        print(f"{Animal.get_name(self)} scoffs down some food.. *chomp chomp*")
+        print(f"{self.get_name()} scoffs down some food.. *chomp chomp*")
 
     def sleeping(self):
-        print(f"{Animal.get_name(self)} dozes off... *Zzzzz*")
+        print(f"{self.get_name()} dozes off... *zzzzz*")
 
     def socialise(self):
-        print(f"{Animal.get_name(self)} communicates with the other {Animal.get_species(self)}'s..*vocal noises*")
+        print(f"{self.get_name()} communicates with the other {self.get_species()}s.. *vocal noises*")
 
     def nurse_offspring(self):
-        print(f"{Animal.get_name(self)} nurses their offspring.. *nuzzles offspring*")
+        print(f"{self.get_name()} nurses their offspring.. *nuzzles offspring*")
 
     def play(self):
-        print(f"{Animal.get_name(self)} plays with the other {Animal.get_species(self)}'s..*playful noises*")
+        print(f"{self.get_name()} plays with the other {self.get_species()}s.. *playful noises*")
