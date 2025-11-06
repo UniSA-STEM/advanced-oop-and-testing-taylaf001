@@ -10,16 +10,26 @@ from animal import Animal
 
 class Bird(Animal):
     def __init__(self, name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space, can_Fly):
+        # Animal class attributes
         Animal.__init__(self, name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space)
+
+        # Empty Attributes which include data validation to ensure only valid inputs are passed in and set
+        self.__can_Fly = None
 
         if isinstance(can_Fly, bool):
             self.__can_Fly = can_Fly
         else:
             raise TypeError("Set 'Can fly' to either True or False")
 
+    # Getter
     def get_can_Fly(self):
         return self.__can_Fly
 
+    # Setter
+    def set_can_Fly(self, can_Fly):
+        self.__can_Fly = can_Fly
+
+    # Methods including abstract ones from animal class
     def making_sounds(self):
         print(f"{self.get_name()} makes a sound.. *squark squark*")
 

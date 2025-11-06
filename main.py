@@ -147,3 +147,36 @@ def enclosure():
 
     enclosure1.enclosure_status()
 
+# Health Test
+def test_Health():
+
+    leo = Mammal(
+        name="Leo",
+        classification="Mammal",
+        species="Elephant",
+        age=18,
+        dietary_requirements="Herbivore",
+        specialisation_needed="Mammal",
+        preferred_environment="Savanna",
+        preferred_space="Large",
+        fur_type="Coarse"
+    )
+    leo.making_sounds()
+    leo.eating()
+    leo.sleeping()
+    leo.socialise()
+    leo.nurse_offspring()
+    leo.play()
+
+    leo.health = Health()
+    leo.health.update_HealthIssue("4/11/2021", "Illness", "Infection", "Infection in eye", "Minor", "XXX medication provided", "Under Treatment")
+    leo.health.update_HealthIssue("2/03/2020", "Illness", "Parasites", "Parasites in stomach", "Minor", "XXX medication provided", "Under Treatment")
+    leo.health.update_HealthIssue("01/11/2015", "Injury", "Broken Bone", "Broken left tibia", "Critical", "Surgery scheduled", "Under Treatment")
+    leo.health.update_HealthIssue("18/08/2025", "Injury", "Broken Bone", "Broken toe", "Minor", "Bandaged", "Healthy")
+    leo.health.update_HealthIssue("23/06/2024", "Injury", "Broken Bone", "Broken right tibia", "Minor", "Surgery scheduled", "Under Treatment")
+    leo.health.update_HealthIssue("19/11/2019", "Illness", "Parasites", "Parasites in intestines", "Major", "XXX medication provided", "Sick")
+    leo.health.generate_AnimalReport(leo.get_name(), leo.get_classification(), leo.get_species(), leo.get_age())
+
+enclosure = enclosure()
+healthTest = test_Health()
+

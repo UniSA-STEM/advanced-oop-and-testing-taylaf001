@@ -9,24 +9,34 @@ This is my own work as defined by the University's Academic Integrity Policy.
 from animal import Animal
 
 class Mammal(Animal):
+
+    # List to store set values unique to mammals for access and comparison in methods
     fur_types = ["None", "Soft", "Coarse", "Long", "Short"]
+
     def __init__(self, name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space, fur_type):
+        # Animal class attributes
         Animal.__init__(self, name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space)
+
+        # Empty Attributes which include data validation to ensure only valid inputs are passed in and set
+        self.__fur_type = None
 
         if isinstance(fur_type, str):
             self.set_fur_type(fur_type)
         else:
             raise TypeError("Fur type must be a string.")
 
+    # Getter
     def get_fur_type(self):
         return self.__fur_type
 
+    # Setter
     def set_fur_type(self, fur_type):
         if fur_type not in self.fur_types:
             raise ValueError(f"Invalid fur type. Please choose from {self.fur_types}.")
         else:
             self.__fur_type = fur_type
 
+    # Methods including abstract ones from animal class
     def making_sounds(self):
         print(f"{self.get_name()} makes a sound.. *grrrr*")
 

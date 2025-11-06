@@ -11,6 +11,10 @@ from abc import ABC, abstractmethod
 
 class Staff(ABC):
     def __init__(self, name, role):
+
+        self.__name = name
+        self.__role = role
+
         if isinstance(name, str):
             self.__name = name
         else:

@@ -10,7 +10,6 @@ from abc import ABC, abstractmethod
 from health import Health
 
 class Animal(ABC):
-
     # Dictionaries utilised to store key-value pairs unique to each classification of animal
     animal_PreferredEnvironment = {"Mammal": ("Grassland", "Tropical", "Savanna", "Farm", "Backyard", "Indoors"),
                                     "Bird": ("Aviary", "Tropical", "Grassland", "Wetlands", "Urban"),
@@ -23,7 +22,16 @@ class Animal(ABC):
     animal_Classifications = ["Bird", "Mammal", "Reptile"]
 
     def __init__(self, name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space):
-        # Attributes which include data validation to ensure only valid inputs are passed in
+        # Empty Attributes which include data validation to ensure only valid inputs are passed in and set
+        self.__name = None
+        self.__classification = None
+        self.__species = None
+        self.__age = None
+        self.__dietary_requirements = None
+        self.__specialisation_needed = None
+        self.__preferred_environment = None
+        self.__preferred_space = None
+        self.__health = Health
 
         if isinstance(name, str):
             self.__name = name
@@ -65,10 +73,10 @@ class Animal(ABC):
         else:
             raise TypeError("Preferred space must be a string")
 
-        self.__health = Health
-
         print(self)
+
     # Getters for attributes
+
     def get_name(self):
         return self.__name
 
@@ -94,6 +102,7 @@ class Animal(ABC):
         return self.__classification
 
     # Setters for attributes
+
     def set_dietary_requirements(self, dietary_requirements):
         if dietary_requirements not in self.animal_PreferredDiet:
             raise ValueError("An animal must either be a Carnivore, Herbivore, or Omnivore")
@@ -131,13 +140,16 @@ class Animal(ABC):
         else:
             raise ValueError(f"Invalid space. Please choose from {self.animal_PreferredSpace}.")
 
+    # Methods
     def health_report(self):
         return f"{self.__health.generate_AnimalReport(self.__name, self.__classification, self.__species, self.__age)}"
 
+    # String conversion
     def __str__(self):
         return f"Your animal, {self.get_name()}, has been successfully introduced into the Zoo.\n"
 
     # Common animal methods to be utilised by child classes. Abstract methods utilised to allow for customisation via child classes.
+
     @abstractmethod
     def making_sounds(self):
         pass

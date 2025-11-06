@@ -10,16 +10,26 @@ from animal import Animal
 
 class Reptile(Animal):
     def __init__(self, name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space, is_venomous):
+        # Animal class attributes
         Animal.__init__(self, name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space)
+
+        # Empty Attributes which include data validation to ensure only valid inputs are passed in and set
+        self.is_venomous = None
 
         if isinstance(is_venomous, bool):
             self.__is_venomous = is_venomous
         else:
             raise TypeError("Set venomous to either True or False")
 
+    # Getter
     def get_venomous(self):
         return self.__is_venomous
 
+    # Setter
+    def set_is_venomous(self, is_venomous):
+        self.__is_venomous = is_venomous
+
+    # Methods including abstract ones from animal class
     def making_sounds(self):
         print(f"{self.get_name()} makes a sound.. *hiss*")
 

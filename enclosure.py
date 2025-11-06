@@ -8,12 +8,23 @@ This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
 from animal import Animal
+from health import Health
 
 class Enclosure:
     enclosure_Sizes = ["Small", "Medium", "Large"]
     enclosure_Environments = ["Grassland", "Tropical", "Savanna", "Farm", "Backyard", "Indoors", "Aviary", "Tropical", "Grassland", "Wetlands", "Urban", "Desert", "Tropical", "Terrarium", "Aquatic"]
 
     def __init__(self, enclosure_Name, size, environment, animal_Assigned, max_Capacity):
+
+        self.__enclosure_Name = enclosure_Name
+        self.__size = size
+        self.__environment = environment
+        self.__animal_Assigned = animal_Assigned
+        self.__max_Capacity = max_Capacity
+        self.__cleanliness_Level = 100
+        self.__current_Capacity = 0
+        self.__animalsEnclosedDict = {}
+
         if isinstance(enclosure_Name, str):
             self.__enclosure_Name = enclosure_Name
         else:
@@ -39,13 +50,20 @@ class Enclosure:
         else:
             raise TypeError("Max capacity must be a number.")
 
-        self.__cleanliness_Level = 100
-
-        self.__animalsEnclosedDict = {}
-
-        self.__current_Capacity = 0
-
         print(self)
+
+    # Getters
+    def get_enclosure_Name(self):
+        return self.__enclosure_Name
+
+    def get_size(self):
+        return self.__size
+
+    def get_environment(self):
+        return self.__environment
+
+    def get_animal_Assigned(self):
+        return self.__animal_Assigned
 
     def get_max_Capacity(self):
         return self.__max_Capacity
@@ -59,6 +77,7 @@ class Enclosure:
     def get_animalsEnclosedList(self):
         return self.__animalsEnclosedDict
 
+    # Setters
     def set_cleanliness_Level(self, cleanliness_Level):
         self.__cleanliness_Level = cleanliness_Level
 
@@ -86,6 +105,7 @@ class Enclosure:
     def set_current_Capacity(self, current_Capacity):
         self.__current_Capacity = current_Capacity
 
+    # Methods
     def add_animal(self, animal):
         if animal.get_classification() == self.__animal_Assigned and self.__current_Capacity < self.__max_Capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size:
             self.set_animalsEnclosed(animal)
@@ -109,22 +129,23 @@ class Enclosure:
                 self.set_current_Capacity(self.get_current_Capacity()-1)
 
     def list_animals(self):
-        print(f"Animals Enclosed:\n")
+        print(f"\033[1mAnimals Enclosed:\033[0m\n")
         for key, value in self.__animalsEnclosedDict.items():
-            print(f"Name: {key} | Species: {value.get_species()} | Age: {value.get_age()} | Classification: {value.get_classification()}")
+            print(f"\033[1mName:\033[0m {key} | \033[1mSpecies:\033[0m {value.get_species()} | \033[1mAge:\033[0m {value.get_age()} | \033[1mClassification:\033[0m {value.get_classification()}")
 
     def enclosure_status(self):
         print("------------------------")
-        print(f"{self.__enclosure_Name} Status:")
-        print("-----")
-        print(f"Enclosure Environment: {self.__environment}")
-        print(f"Species Assigned: {self.__animal_Assigned}")
-        print(f"Cleanliness Level: {self.__cleanliness_Level}")
-        print(f"Current Capacity: {self.__current_Capacity}")
-        print(f"Max Capacity: {self.__max_Capacity}")
-        print("-----")
+        print(f"\033[1m{self.__enclosure_Name} Report:\033[0m")
+        print("------------------------")
+        print(f"\033[1mEnclosure Environment:\033[0m {self.__environment}")
+        print(f"\033[1mSpecies Assigned:\033[0m {self.__animal_Assigned}")
+        print(f"\033[1mCleanliness Level:\033[0m {self.__cleanliness_Level}")
+        print(f"\033[1mCurrent Capacity:\033[0m {self.__current_Capacity}")
+        print(f"\033[1mMax Capacity:\033[0m {self.__max_Capacity}")
+        print("----")
         self.list_animals()
         print("----------------------")
 
+    # String conversion method
     def __str__(self):
         return f"{self.__enclosure_Name} has successfully been added to the zoo.\n"
