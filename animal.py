@@ -7,6 +7,7 @@ Username: fonty005
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
 from abc import ABC, abstractmethod
+from health import Health
 
 class Animal(ABC):
 
@@ -64,7 +65,8 @@ class Animal(ABC):
         else:
             raise TypeError("Preferred space must be a string")
 
-        #self.__health = Health() #NEED TO DO HEALTH CLASS BEFORE DOING THIS
+        self.__health = Health
+
         print(self)
     # Getters for attributes
     def get_name(self):
@@ -128,6 +130,9 @@ class Animal(ABC):
             self.__preferred_space = preferred_space
         else:
             raise ValueError(f"Invalid space. Please choose from {self.animal_PreferredSpace}.")
+
+    def health_report(self):
+        return f"{self.__health.generate_AnimalReport(self.__name, self.__classification, self.__species, self.__age)}"
 
     def __str__(self):
         return f"Your animal, {self.get_name()}, has been successfully introduced into the Zoo.\n"

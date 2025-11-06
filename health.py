@@ -36,11 +36,23 @@ class Health:
                 self.__health_IssueCategory = health_IssueCategory
                 self.__health_Issue = health_Issue
             else:
-                raise ValueError(f"Issue must be selected from the following: {self.health_Issues[category]}")
+                raise ValueError(f"Issue must be selected from the following: {self.health_Issues[health_IssueCategory]}")
         else:
             raise ValueError(f"Category must be selected from the following: {self.health_Issues.keys()}")
 
-    def add_HealthIssue(self, animal, health_Issue, health_Status):
-        self.set_health_Issue(health_Issue)
+    def add_HealthIssue(self, health_IssueCategory, health_Issue, health_Status=None):
+        self.set_health_Issue(health_IssueCategory, health_Issue)
 
-    def generate_HealthReport(self, subject, ):
+        if health_Status: # If health status changes, update via this code
+            self.set_health_Status(health_Status)
+
+    def generate_AnimalReport(self, animal_Name, animal_Classification, animal_Species, animal_Age):
+        print("Health Report")
+        print("--------------")
+        print(f"Name: {animal_Name}")
+        print(f"Classification: {animal_Classification}")
+        print(f"Species: {animal_Species}")
+        print(f"Age: {animal_Age}")
+        print("--------------")
+        print(f"Health Status: {self.__health_Status}")
+        print(f"Health Issue: {self.__health_IssueCategory} - {self.__health_Issue}")

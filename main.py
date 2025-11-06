@@ -10,6 +10,7 @@ from mammal import Mammal
 from bird import Bird
 from reptile import Reptile
 from enclosure import Enclosure
+from health import Health
 
 
 # BASIC ANIMAL CLASS TESTS
@@ -146,4 +147,3 @@ def enclosure():
 
     enclosure1.enclosure_status()
 
-enclosure = enclosure()
