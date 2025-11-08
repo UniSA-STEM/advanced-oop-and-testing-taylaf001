@@ -108,13 +108,13 @@ class Animal(ABC):
 
     def set_dietary_requirements(self, dietary_requirements):
         if dietary_requirements not in self.animal_PreferredDiet:
-            raise ValueError("An animal must either be a Carnivore, Herbivore, or Omnivore")
+            raise ValueError(f"An animal's diet must be chosen from the list: {self.animal_PreferredDiet}")
         else:
             self.__dietary_requirements = dietary_requirements
 
     def set_classification(self, classification):
         if classification not in self.animal_Classifications:
-            raise ValueError("Classification must be either Mammal, Bird or Reptile")
+            raise ValueError(f"Classification must be chosen from the list: {self.animal_Classifications}")
         else:
             self.__classification = classification
 
