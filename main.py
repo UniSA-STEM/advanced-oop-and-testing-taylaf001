@@ -177,6 +177,16 @@ def test_Health():
     leo.health.update_HealthIssue("19/11/2019", "Illness", "Parasites", "Parasites in intestines", "Major", "XXX medication provided", "Sick")
     leo.health.generate_AnimalReport(leo.get_name(), leo.get_classification(), leo.get_species(), leo.get_age())
 
-enclosure = enclosure()
+    enclosure1 = Enclosure(
+        enclosure_Name="Mammal Enclosure",
+        size="Large",
+        environment="Savanna",
+        animal_Assigned="Mammal",
+        max_Capacity=5
+    )
+    enclosure1.enclosure_status()
+    enclosure1.add_animal(leo)
+
 healthTest = test_Health()
+
 

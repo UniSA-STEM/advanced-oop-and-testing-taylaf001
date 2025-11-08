@@ -15,7 +15,7 @@ class Mammal(Animal):
 
     def __init__(self, name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space, fur_type):
         # Animal class attributes
-        Animal.__init__(self, name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space)
+        super().__init__(name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space)
 
         # Empty Attributes which include data validation to ensure only valid inputs are passed in and set
         self.__fur_type = None

@@ -11,10 +11,10 @@ from animal import Animal
 class Reptile(Animal):
     def __init__(self, name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space, is_venomous):
         # Animal class attributes
-        Animal.__init__(self, name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space)
+        super().__init__(name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space)
 
         # Empty Attributes which include data validation to ensure only valid inputs are passed in and set
-        self.is_venomous = None
+        self.__is_venomous = None
 
         if isinstance(is_venomous, bool):
             self.__is_venomous = is_venomous

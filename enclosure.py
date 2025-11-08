@@ -107,7 +107,12 @@ class Enclosure:
 
     # Methods
     def add_animal(self, animal):
-        if animal.get_classification() == self.__animal_Assigned and self.__current_Capacity < self.__max_Capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size:
+        if animal.health.get_health_Status() == "Sick":
+            return print(f"{animal.get_name()} cannot be moved to the enclosure due to it's health status.")
+        elif animal.health.get_health_Status() == "Under Treatment":
+            return print(f"{animal.get_name()} cannot be moved to the enclosure due to it's health status.")
+
+        if animal.get_classification() == self.__animal_Assigned and self.__current_Capacity < self.__max_Capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size and animal.health.get_health_Status() != "Sick" and animal.health.get_health_Status() != "Under Treatment":
             self.set_animalsEnclosed(animal)
             self.set_current_Capacity(self.get_current_Capacity()+1)
             print(f"{animal.get_name()} has been successfully introduced into the {self.__enclosure_Name}.\n")

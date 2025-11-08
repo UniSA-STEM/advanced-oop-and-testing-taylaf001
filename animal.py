@@ -31,7 +31,7 @@ class Animal(ABC):
         self.__specialisation_needed = None
         self.__preferred_environment = None
         self.__preferred_space = None
-        self.__health = Health
+        self.__health = Health()
 
         if isinstance(name, str):
             self.__name = name
@@ -100,6 +100,9 @@ class Animal(ABC):
 
     def get_classification(self):
         return self.__classification
+
+    def get_health(self):
+        return self.__health
 
     # Setters for attributes
 
