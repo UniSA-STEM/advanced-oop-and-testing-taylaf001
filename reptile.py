@@ -14,7 +14,7 @@ class Reptile(Animal):
         super().__init__(name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space)
 
         # Empty Attributes which include data validation to ensure only valid inputs are passed in and set
-        self.__is_venomous = None
+        self.__is_venomous = is_venomous
 
         if isinstance(is_venomous, bool):
             self.__is_venomous = is_venomous

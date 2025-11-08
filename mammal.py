@@ -18,7 +18,7 @@ class Mammal(Animal):
         super().__init__(name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space)
 
         # Empty Attributes which include data validation to ensure only valid inputs are passed in and set
-        self.__fur_type = None
+        self.__fur_type = fur_type
 
         if isinstance(fur_type, str):
             self.set_fur_type(fur_type)

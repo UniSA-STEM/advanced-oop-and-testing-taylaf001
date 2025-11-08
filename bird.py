@@ -14,7 +14,7 @@ class Bird(Animal):
         super().__init__(name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space)
 
         # Empty Attributes which include data validation to ensure only valid inputs are passed in and set
-        self.__can_Fly = None
+        self.__can_Fly = can_Fly
 
         if isinstance(can_Fly, bool):
             self.__can_Fly = can_Fly

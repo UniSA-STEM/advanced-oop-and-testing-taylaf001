@@ -23,14 +23,14 @@ class Animal(ABC):
 
     def __init__(self, name, classification, species, age, dietary_requirements, specialisation_needed, preferred_environment, preferred_space):
         # Empty Attributes which include data validation to ensure only valid inputs are passed in and set
-        self.__name = None
-        self.__classification = None
-        self.__species = None
-        self.__age = None
-        self.__dietary_requirements = None
-        self.__specialisation_needed = None
-        self.__preferred_environment = None
-        self.__preferred_space = None
+        self.__name = name
+        self.__classification = classification
+        self.__species = species
+        self.__age = age
+        self.__dietary_requirements = dietary_requirements
+        self.__specialisation_needed = specialisation_needed
+        self.__preferred_environment = preferred_environment
+        self.__preferred_space = preferred_space
         self.__health = Health()
 
         if isinstance(name, str):
