@@ -12,11 +12,11 @@ from abc import ABC, abstractmethod
 class Staff(ABC):
     roles = ["Veterinarian, Zookeeper"]
     used_StaffID = set()
-    def __init__(self, name, role, staffID):
+    def __init__(self, name, staffID, role):
 
         self.__name = name
-        self.__role = role
         self.__staffID = staffID
+        self.__role = role
 
         if isinstance(name, str):
             self.__name = name
@@ -36,6 +36,7 @@ class Staff(ABC):
         else:
             raise TypeError("Staff ID must be a number.")
 
+    # Getters
     def get_name(self):
         return self.__name
 
@@ -45,6 +46,7 @@ class Staff(ABC):
     def get_staffID(self):
         return self.__staffID
 
+    # Setters
     def set_role(self, role):
         if role in self.roles:
             self.__role = role
@@ -53,15 +55,12 @@ class Staff(ABC):
 
     def set_staffID(self, staffID):
         if staffID in self.used_StaffID:
-            raise ValueError(f"Staff ID {staffID} already exists. Please enter a unique 4 digit ID.")
+            raise ValueError(f"Staff ID: {staffID} already exists. Please enter a unique 4 digit number.")
         else:
             self.used_StaffID.add(staffID)
             self.__staffID = staffID
 
+    # Methods
     @abstractmethod
-    def assigned_Animals(self):
-        pass
-
-    @abstractmethod
-    def assigned_Enclosures(self):
+    def duties(self):
         pass
