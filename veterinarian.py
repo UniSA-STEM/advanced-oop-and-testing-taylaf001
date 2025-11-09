@@ -45,7 +45,7 @@ class Veterinarian(Staff):
             else:
                 print(f"Veterinarian selected does not have the correct specialisation for your animal. Please select a {animal.get_specialisation_needed()} veterinarian.")
         else:
-            raise TypeError(f"Animal assigned to veterinarian must be an animal.")
+            raise TypeError(f"Animal assigned to veterinarian must be an animal object already in the zoo.")
     # Methods
     def assign_Animal(self, animal):
         self.set_assign_Animal(animal)
@@ -56,9 +56,12 @@ class Veterinarian(Staff):
             print(f"Dr {self.get_name()} has successfully performed a health check on {animal.get_name()}.")
 
     def perform_HealthCheck(self, animal): # Perform health check on specific animal
-        if animal in self.get_assigned_Animals():
-            print(f"Dr {self.get_name()} is conducting a health check on {animal.get_name()}.")
+        if isinstance(animal, Animal):
+            if animal in self.get_assigned_Animals():
+                print(f"Dr {self.get_name()} is conducting a health check on {animal.get_name()}.")
+            else:
+                raise ValueError(f"Animal not in assigned list. Please select an animal from the list: {self.get_assigned_Animals()}")
         else:
-            raise ValueError(f"Animal not in assigned list. Please select an animal from the list: {self.get_assigned_Animals()}")
+            raise TypeError(f"Animal assigned to veterinarian must be an animal object already in the zoo.")
 
 
