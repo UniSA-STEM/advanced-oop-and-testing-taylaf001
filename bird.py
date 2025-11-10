@@ -40,7 +40,7 @@ class Bird(Animal):
         print(f"{self.get_name()} sleeps perched, high up in a tree... *zzzzz*")
 
     def fly(self):
-        if self.__can_fly() == True:
+        if self.get_can_fly() == True:
             print(f"{self.get_name()} zooms through the blue sky.. *squark*")
         else:
             print(f"{self.get_name()} is unable to fly")
