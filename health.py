@@ -132,6 +132,8 @@ class Health:
         for healthRecord in self.__health_history:
             print(f" \033[1mDate:\033[0m {healthRecord[0]} | \033[1m{healthRecord[1]}\033[0m: {healthRecord[2]} | \033[1mDescription:\033[0m {healthRecord[3]} | \033[1mSeverity:\033[0m {healthRecord[4]} | \033[1mTreatment Notes:\033[0m {healthRecord[5]}\n")
         print("------------------------")
+        health_report = f"{animal_name} {animal_classification} {animal_species} {animal_age} {self.__health_status} {self.__health_issuecategory} {self.__health_issue} {self.__issue_description} {self.severity} {self.__treatment_notes}"
+        return health_report
         # Code inspired by:
         # Kodeclik, 2025. How to bold text in python. [Online] Kodeclik.
         # Available at: <https://www.kodeclik.com/how-to-bold-text-in-python/>
