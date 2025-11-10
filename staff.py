@@ -33,7 +33,7 @@ class Staff(ABC):
             if staffID > 0 and staffID < 9999: # Validation logic to keep staff ID length within 4 digits for practical purposes
                 self.set_staffID(staffID)
             else:
-                print("Staff ID must be a 4 digit number.")
+                raise ValueError("Staff ID must be a 4 digit number.")
         else:
             raise TypeError("Staff ID must be a number.")
 
@@ -52,11 +52,11 @@ class Staff(ABC):
         if role in self.roles:
             self.__role = role
         else:
-            print(f"Staff role must be from the list: {self.roles}")
+            raise ValueError(f"Staff role must be from the list: {self.roles}")
 
     def set_staffID(self, staffID):
         if staffID in self.used_staffID:
-            print(f"Staff ID: {staffID} already exists. Please enter a unique 4 digit number.")
+            raise ValueError(f"Staff ID: {staffID} already exists. Please enter a unique 4 digit number.")
         else:
             self.used_staffID.add(staffID)
             self.__staffID = staffID
