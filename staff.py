@@ -15,6 +15,7 @@ class Staff(ABC):
     used_staffID = set() # Used set() function as the order of staff ID's does not matter
 
     def __init__(self, name, staffID, role):
+        #  Attributes which include data validation to ensure only valid inputs are passed in and set
         self.__name = name
         self.__staffID = staffID
         self.__role = role
@@ -65,3 +66,7 @@ class Staff(ABC):
     @abstractmethod
     def duties(self): # Created an abstract duties method as all staff members must be assigned duties
         pass
+
+    # String conversion method
+    def __str__(self):
+        return f"{self.__role} {self.__name} has been hired."

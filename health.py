@@ -18,6 +18,7 @@ class Health:
                      "Behavioural Concern": ["Aggression", "Anxiety", "Destruction", "Self-mutilation", "Territorial", "Appetite Loss"]} # Used dictionary to be able to store categories and values
 
     def __init__(self, date=None, health_issuecategory="Nil", health_issue="No Issues", issue_description="Nil", severity="Nil", treatment_notes="Nil", health_status="Healthy"):
+        # Attributes which include data validation to ensure only valid inputs are passed in and set
         self.__date = date
         self.__health_issuecategory = health_issuecategory
         self.__health_issue = health_issue
@@ -135,3 +136,6 @@ class Health:
         # Kodeclik, 2025. How to bold text in python. [Online] Kodeclik.
         # Available at: <https://www.kodeclik.com/how-to-bold-text-in-python/>
         # [Accessed 6 November 2025].
+
+    def __str__(self):
+        return f"Health Profile has been successfully created.\n"

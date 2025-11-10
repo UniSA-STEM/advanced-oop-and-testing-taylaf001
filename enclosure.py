@@ -8,25 +8,24 @@ This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
 from animal import Animal
-from health import Health
 
 class Enclosure:
-    enclosure_Sizes = ["Small", "Medium", "Large"]
-    enclosure_Environments = ["Grassland", "Tropical", "Savanna", "Farm", "Backyard", "Indoors", "Aviary", "Tropical", "Grassland", "Wetlands", "Urban", "Desert", "Tropical", "Terrarium", "Aquatic"]
+    enclosure_sizes = ["Small", "Medium", "Large"]
+    enclosure_environments = ["Grassland", "Tropical", "Savanna", "Farm", "Backyard", "Indoors", "Aviary", "Tropical", "Grassland", "Wetlands", "Urban", "Desert", "Tropical", "Terrarium", "Aquatic"]
 
-    def __init__(self, enclosure_Name, size, environment, animal_Assigned, max_Capacity):
+    def __init__(self, enclosure_name, size, environment, animal_assigned, max_capacity):
 
-        self.__enclosure_Name = enclosure_Name
+        self.__enclosure_name = enclosure_name
         self.__size = size
         self.__environment = environment
-        self.__animal_Assigned = animal_Assigned
-        self.__max_Capacity = max_Capacity
-        self.__cleanliness_Level = 100
-        self.__current_Capacity = 0
-        self.__animalsEnclosedDict = {}
+        self.__animal_assigned = animal_assigned
+        self.__max_capacity = max_capacity
+        self.__cleanliness_level = 100
+        self.__current_capacity = 0
+        self.__animalsencloseddict = {}
 
-        if isinstance(enclosure_Name, str):
-            self.__enclosure_Name = enclosure_Name
+        if isinstance(enclosure_name, str):
+            self.__enclosure_name = enclosure_name
         else:
             raise TypeError("Enclosure name must be a string.")
 
@@ -40,21 +39,21 @@ class Enclosure:
         else:
             raise TypeError("Enclosure environment must be a string.")
 
-        if isinstance(animal_Assigned, str):
-            self.set_animal_Assigned(animal_Assigned)
+        if isinstance(animal_assigned, str):
+            self.set_animal_assigned(animal_assigned)
         else:
             raise TypeError("Animal assigned must be a string.")
 
-        if isinstance(max_Capacity, int):
-            self.__max_Capacity = max_Capacity
+        if isinstance(max_capacity, int):
+            self.__max_Capacity = max_capacity
         else:
             raise TypeError("Max capacity must be a number.")
 
         print(self)
 
     # Getters
-    def get_enclosure_Name(self):
-        return self.__enclosure_Name
+    def get_enclosure_name(self):
+        return self.__enclosure_name
 
     def get_size(self):
         return self.__size
@@ -62,95 +61,99 @@ class Enclosure:
     def get_environment(self):
         return self.__environment
 
-    def get_animal_Assigned(self):
-        return self.__animal_Assigned
+    def get_animal_assigned(self):
+        return self.__animal_assigned
 
-    def get_max_Capacity(self):
-        return self.__max_Capacity
+    def get_max_capacity(self):
+        return self.__max_capacity
 
-    def get_current_Capacity(self):
-        return self.__current_Capacity
+    def get_current_capacity(self):
+        return self.__current_capacity
 
-    def get_cleanliness_Level(self):
-        return self.__cleanliness_Level
+    def get_cleanliness_level(self):
+        return self.__cleanliness_level
 
-    def get_animalsEnclosedList(self):
-        return self.__animalsEnclosedDict
+    def get_animalsenclosedlist(self):
+        return self.__animalsencloseddict
 
     # Setters
-    def set_cleanliness_Level(self, cleanliness_Level):
-        self.__cleanliness_Level = cleanliness_Level
+    def set_cleanliness_level(self, cleanliness_level):
+        self.__cleanliness_level = cleanliness_level
 
     def set_size(self, size):
-        if size in self.enclosure_Sizes:
+        if size in self.enclosure_sizes:
             self.__size = size
         else:
-            raise ValueError(f"Enclosure size must be selected from the following:{self.enclosure_Sizes}")
+            raise ValueError(f"Enclosure size must be selected from the following:{self.enclosure_sizes}")
 
     def set_environment(self, environment):
-        if environment in self.enclosure_Environments:
+        if environment in self.enclosure_environments:
             self.__environment = environment
         else:
-            raise ValueError(f"Enclosure environment must be selected from the following:{self.enclosure_Environments}")
+            raise ValueError(f"Enclosure environment must be selected from the following:{self.enclosure_environments}")
 
-    def set_animal_Assigned(self, animal_Assigned):
-        if animal_Assigned in Animal.animal_Classifications:
-            self.__animal_Assigned = animal_Assigned
+    def set_animal_assigned(self, animal_assigned):
+        if animal_assigned in Animal.animal_classifications:
+            self.__animal_assigned = animal_assigned
         else:
-            raise ValueError(f"Animal classification assigned must be selected from {Animal.animal_Classifications}")
+            raise ValueError(f"Animal classification assigned must be selected from {Animal.animal_classifications}")
 
-    def set_animalsEnclosed(self, animal):
-        self.__animalsEnclosedDict.update({animal.get_name(): animal})
+    def set_animalsenclosed(self, animal):
+        self.__animalsencloseddict.update({animal.get_name(): animal})
 
-    def set_current_Capacity(self, current_Capacity):
-        self.__current_Capacity = current_Capacity
+    def set_current_capacity(self, current_capacity):
+        self.__current_capacity = current_capacity
 
     # Methods
-    def add_animal(self, animal):
-        if animal.health.get_health_Status() == "Sick":
+    def add_animal(self, animal): # Adds animal into enclosure IF their health status is not sick or under treatment
+        if animal.health.get_health_status() == "Sick":
             return print(f"{animal.get_name()} cannot be moved to the enclosure due to it's health status.")
-        elif animal.health.get_health_Status() == "Under Treatment":
+        elif animal.health.get_health_status() == "Under Treatment":
             return print(f"{animal.get_name()} cannot be moved to the enclosure due to it's health status.")
-
-        if animal.get_classification() == self.__animal_Assigned and self.__current_Capacity < self.__max_Capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size and animal.health.get_health_Status() != "Sick" and animal.health.get_health_Status() != "Under Treatment":
-            self.set_animalsEnclosed(animal)
-            self.set_current_Capacity(self.get_current_Capacity()+1)
-            print(f"{animal.get_name()} has been successfully introduced into the {self.__enclosure_Name}.\n")
-        elif animal.get_classification() == self.__animal_Assigned and self.__current_Capacity == self.__max_Capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size:
+        # if statements used as data validation to ensure animals are assigned into enclosures that suit their needs
+        if animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size and animal.health.get_health_status() != "Sick" and animal.health.get_health_status() != "Under Treatment":
+            self.set_animalsenclosed(animal)
+            self.set_current_capacity(self.get_current_capacity()+1)
+            return print(f"{animal.get_name()} has been successfully introduced into the {self.__enclosure_name}.\n")
+        elif animal.get_classification() == self.__animal_assigned and self.__current_capacity == self.__max_capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size:
             raise ValueError(f"Enclosure capacity full. Remove an animal or build a new enclosure.")
-        elif animal.get_classification() == self.__animal_Assigned and self.__current_Capacity < self.__max_Capacity and animal.get_preferred_environment() != self.__environment and animal.get_preferred_space() == self.__size:
+        elif animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() != self.__environment and animal.get_preferred_space() == self.__size:
             raise ValueError(f"Enclosure environment not {animal.get_name()}'s preferred environment.")
-        elif animal.get_classification() == self.__animal_Assigned and self.__current_Capacity < self.__max_Capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() != self.__size:
+        elif animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() != self.__size:
             raise ValueError(f"Enclosure size not {animal.get_name()}'s preferred enclosure size.")
-        elif animal.get_classification() == self.__animal_Assigned and self.__current_Capacity < self.__max_Capacity and animal.get_preferred_environment() != self.__environment and animal.get_preferred_space() != self.__size:
+        elif animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() != self.__environment and animal.get_preferred_space() != self.__size:
             raise ValueError(f"Enclosure size and environment do not meet {animal.get_name()}'s preferred specifications.")
         else:
-            raise ValueError(f"Animal must match species assigned to enclosure: {self.__animal_Assigned}")
+            raise ValueError(f"Animal must match species assigned to enclosure: {self.__animal_assigned}")
 
     def remove_animal(self, animal):
-        for animal in self.__animalsEnclosedDict.keys():
+        for animal in self.__animalsencloseddict.keys():
             if animal.get_name() == animal:
-                self.__animalsEnclosedDict.pop(animal)
-                self.set_current_Capacity(self.get_current_Capacity()-1)
+                self.__animalsencloseddict.pop(animal)
+                self.set_current_capacity(self.get_current_capacity()-1)
 
-    def list_animals(self):
+    def list_animals(self): # Display all animals within the enclosure
         print(f"\033[1mAnimals Enclosed:\033[0m\n")
-        for key, value in self.__animalsEnclosedDict.items():
+        for key, value in self.__animalsencloseddict.items(): # Display each animal and their details in the stored dictionary
             print(f"\033[1mName:\033[0m {key} | \033[1mSpecies:\033[0m {value.get_species()} | \033[1mAge:\033[0m {value.get_age()} | \033[1mClassification:\033[0m {value.get_classification()}")
 
     def enclosure_status(self):
         print("------------------------")
-        print(f"\033[1m{self.__enclosure_Name} Report:\033[0m")
+        print(f"\033[1m{self.__enclosure_name} Report:\033[0m")
         print("------------------------")
         print(f"\033[1mEnclosure Environment:\033[0m {self.__environment}")
-        print(f"\033[1mSpecies Assigned:\033[0m {self.__animal_Assigned}")
-        print(f"\033[1mCleanliness Level:\033[0m {self.__cleanliness_Level}")
-        print(f"\033[1mCurrent Capacity:\033[0m {self.__current_Capacity}")
-        print(f"\033[1mMax Capacity:\033[0m {self.__max_Capacity}")
+        print(f"\033[1mSpecies Assigned:\033[0m {self.__animal_assigned}")
+        print(f"\033[1mCleanliness Level:\033[0m {self.__cleanliness_level}")
+        print(f"\033[1mCurrent Capacity:\033[0m {self.__current_capacity}")
+        print(f"\033[1mMax Capacity:\033[0m {self.__max_capacity}")
         print("----")
         self.list_animals()
         print("----------------------")
+        # Code inspired by:
+        # Kodeclik, 2025. How to bold text in python. [Online] Kodeclik.
+        # Available at: <https://www.kodeclik.com/how-to-bold-text-in-python/>
+        # [Accessed 6 November 2025].
 
     # String conversion method
     def __str__(self):
-        return f"{self.__enclosure_Name} has successfully been added to the zoo.\n"
+        return f"{self.__enclosure_name} has successfully been added to the zoo.\n"

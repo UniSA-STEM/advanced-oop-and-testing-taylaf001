@@ -11,13 +11,16 @@ from staff import Staff
 from animal import Animal
 
 class Veterinarian(Staff):
+    # List to store set values unique to veterinarians for access and comparison in methods
     specialisations = ["Mammal", "Avian", "Exotic"]
 
     def __init__(self, name, staffID, role, specialisation):
+        # Staff class attributes
         super().__init__(name, staffID, role)
 
+        # Attributes which include data validation to ensure only valid inputs are passed in and set
         self.__specialisation = specialisation
-        self.__assigned_Animals = []
+        self.__assigned_animals = []
 
         if isinstance(specialisation, str):
             self.set_specialisation(specialisation)
@@ -28,8 +31,8 @@ class Veterinarian(Staff):
     def get_specialisation(self):
         return self.__specialisation
 
-    def get_assigned_Animals(self):
-        return self.__assigned_Animals
+    def get_assigned_animals(self):
+        return self.__assigned_animals
 
     # Setters
     def set_specialisation(self, specialisation):
@@ -38,30 +41,31 @@ class Veterinarian(Staff):
         else:
             raise ValueError(f"Veterinary specialisation must be selected from the list: {self.specialisations}")
 
-    def set_assign_Animal(self, animal):
-        if isinstance(animal, Animal): # Validation that the animal passed through is a match for the Animal object.
+    def set_assign_animal(self, animal):
+        if isinstance(animal, Animal): # Validation that the animal passed through is a valid Animal object.
             if animal.get_specialisation_needed() == self.get_specialisation():
-                self.__assigned_Animals.append(animal)
+                self.__assigned_animals.append(animal)
             else:
                 print(f"Veterinarian selected does not have the correct specialisation for your animal. Please select a {animal.get_specialisation_needed()} veterinarian.")
         else:
             raise TypeError(f"Animal assigned to veterinarian must be an animal object already in the zoo.")
     # Methods
-    def assign_Animal(self, animal):
-        self.set_assign_Animal(animal)
+    def assign_animal(self, animal):
+        self.set_assign_animal(animal)
 
-    def duties(self): # Perform health check on all assigned animals
+    def duties(self): # Abstract method from parent staff class performs all individual duties
         print(f"Dr {self.get_name()} is performing assigned duties.")
-        for animal in self.get_assigned_Animals():
+        for animal in self.get_assigned_animals():
             print(f"Dr {self.get_name()} has successfully performed a health check on {animal.get_name()}.")
 
-    def perform_HealthCheck(self, animal): # Perform health check on specific animal
-        if isinstance(animal, Animal):
-            if animal in self.get_assigned_Animals():
+    def perform_healthcheck(self, animal): # Perform health check on specific animal
+        if isinstance(animal, Animal): # Validation that the animal passed through is a valid Animal object.
+            if animal in self.get_assigned_animals():
                 print(f"Dr {self.get_name()} is conducting a health check on {animal.get_name()}.")
             else:
-                raise ValueError(f"Animal not in assigned list. Please select an animal from the list: {self.get_assigned_Animals()}")
+                raise ValueError(f"Animal not in assigned list. Please select an animal from the list: {self.get_assigned_animals()}")
         else:
             raise TypeError(f"Animal assigned to veterinarian must be an animal object already in the zoo.")
+
 
 
