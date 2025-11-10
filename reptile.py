@@ -42,7 +42,7 @@ class Reptile(Animal):
     def shed_skin(self):
         print(f"{self.get_name()} sheds its skin, revealing a glossy new look..")
 
-    def bask_InSun(self):
+    def bask_insun(self):
         print(f"{self.get_name()} basks in the sun, absorbing vitamin D and warming up..")
 
     def hunt(self):
