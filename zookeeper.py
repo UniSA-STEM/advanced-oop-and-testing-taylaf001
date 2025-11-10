@@ -42,7 +42,10 @@ class Zookeeper(Staff):
             print(f"Zookeeper {self.get_name()} has thoroughly cleaned enclosure '{enclosure.get_enclosure_Name()}'.")
 
     def assign_enclosure(self, enclosure):
-        self.set_assign_enclosure(enclosure)
+        if isinstance(enclosure, Enclosure):
+            self.set_assign_enclosure(enclosure)
+        else:
+            raise TypeError(f"No enclosure object exists with this name.")
 
     def feed_animal(self, animal):
         if isinstance(animal, Animal):

@@ -51,7 +51,10 @@ class Veterinarian(Staff):
             raise TypeError(f"Animal assigned to veterinarian must be an animal object already in the zoo.")
     # Methods
     def assign_animal(self, animal):
-        self.set_assign_animal(animal)
+        if isinstance(animal, Animal):
+            self.set_assign_animal(animal)
+        else:
+            raise TypeError("Animal object not found with name provided.")
 
     def duties(self): # Abstract method from parent staff class performs all individual duties
         print(f"Dr {self.get_name()} is performing assigned duties.")
@@ -65,7 +68,7 @@ class Veterinarian(Staff):
             else:
                 raise ValueError(f"Animal not in assigned list. Please select an animal from the list: {self.get_assigned_animals()}")
         else:
-            raise TypeError(f"Animal assigned to veterinarian must be an animal object already in the zoo.")
+            raise TypeError("Animal assigned to veterinarian must be an animal object already in the zoo.")
 
 
 

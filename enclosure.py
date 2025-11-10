@@ -99,38 +99,44 @@ class Enclosure:
             raise ValueError(f"Animal classification assigned must be selected from {Animal.animal_classifications}")
 
     def set_animalsenclosed(self, animal):
-        self.__animalsencloseddict.update({animal.get_name(): animal})
+        self.__animalsencloseddict.update({animal.get_name(): animal}) # Add animal to enclosed animals dictionary
 
     def set_current_capacity(self, current_capacity):
         self.__current_capacity = current_capacity
 
     # Methods
     def add_animal(self, animal): # Adds animal into enclosure IF their health status is not sick or under treatment
-        if animal.health.get_health_status() == "Sick":
-            return print(f"{animal.get_name()} cannot be moved to the enclosure due to it's health status.")
-        elif animal.health.get_health_status() == "Under Treatment":
-            return print(f"{animal.get_name()} cannot be moved to the enclosure due to it's health status.")
-        # if statements used as data validation to ensure animals are assigned into enclosures that suit their needs
-        if animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size and animal.health.get_health_status() != "Sick" and animal.health.get_health_status() != "Under Treatment":
-            self.set_animalsenclosed(animal)
-            self.set_current_capacity(self.get_current_capacity()+1)
-            return print(f"{animal.get_name()} has been successfully introduced into the {self.__enclosure_name}.\n")
-        elif animal.get_classification() == self.__animal_assigned and self.__current_capacity == self.__max_capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size:
-            raise ValueError(f"Enclosure capacity full. Remove an animal or build a new enclosure.")
-        elif animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() != self.__environment and animal.get_preferred_space() == self.__size:
-            raise ValueError(f"Enclosure environment not {animal.get_name()}'s preferred environment.")
-        elif animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() != self.__size:
-            raise ValueError(f"Enclosure size not {animal.get_name()}'s preferred enclosure size.")
-        elif animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() != self.__environment and animal.get_preferred_space() != self.__size:
-            raise ValueError(f"Enclosure size and environment do not meet {animal.get_name()}'s preferred specifications.")
+        if isinstance(animal, Animal):
+            if animal.health.get_health_status() == "Sick":
+                return print(f"{animal.get_name()} cannot be moved to the enclosure due to it's health status.")
+            elif animal.health.get_health_status() == "Under Treatment":
+                return print(f"{animal.get_name()} cannot be moved to the enclosure due to it's health status.")
+            # if statements used as data validation to ensure animals are assigned into enclosures that suit their needs
+            if animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size and animal.health.get_health_status() != "Sick" and animal.health.get_health_status() != "Under Treatment":
+                self.set_animalsenclosed(animal)
+                self.set_current_capacity(self.get_current_capacity()+1)
+                return print(f"{animal.get_name()} has been successfully introduced into the {self.__enclosure_name}.\n")
+            elif animal.get_classification() == self.__animal_assigned and self.__current_capacity == self.__max_capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size:
+                raise ValueError(f"Enclosure capacity full. Remove an animal or build a new enclosure.")
+            elif animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() != self.__environment and animal.get_preferred_space() == self.__size:
+                raise ValueError(f"Enclosure environment not {animal.get_name()}'s preferred environment.")
+            elif animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() != self.__size:
+                raise ValueError(f"Enclosure size not {animal.get_name()}'s preferred enclosure size.")
+            elif animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() != self.__environment and animal.get_preferred_space() != self.__size:
+                raise ValueError(f"Enclosure size and environment do not meet {animal.get_name()}'s preferred specifications.")
+            else:
+                raise ValueError(f"Animal must match species assigned to enclosure: {self.__animal_assigned}")
         else:
-            raise ValueError(f"Animal must match species assigned to enclosure: {self.__animal_assigned}")
+            raise TypeError(f"No animal object exists with this name.")
 
     def remove_animal(self, animal):
-        for animal in self.__animalsencloseddict.keys():
-            if animal.get_name() == animal:
-                self.__animalsencloseddict.pop(animal)
-                self.set_current_capacity(self.get_current_capacity()-1)
+        if isinstance(animal, Animal):
+            for animal in self.__animalsencloseddict.keys():
+                if animal.get_name() == animal:
+                    self.__animalsencloseddict.pop(animal)
+                    self.set_current_capacity(self.get_current_capacity()-1)
+        else:
+            raise TypeError(f"No animal object exists with this name.")
 
     def list_animals(self): # Display all animals within the enclosure
         print(f"\033[1mAnimals Enclosed:\033[0m\n")

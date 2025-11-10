@@ -10,11 +10,14 @@ from abc import ABC, abstractmethod
 from health import Health
 
 class Animal(ABC):
-    # Dictionaries utilised to store key-value pairs unique to each classification of animal
+    # Dictionaries utilised in class to store key-value pairs unique to each classification of animal and ensure all are applied to every animal object
     animal_preferredEnvironment = {"Mammal": ("Grassland", "Tropical", "Savanna", "Farm", "Backyard", "Indoors"),
                                     "Bird": ("Aviary", "Tropical", "Grassland", "Wetlands", "Urban"),
                                     "Reptile": ("Desert", "Tropical", "Terrarium", "Aquatic")}
-    animal_preferredSpecialists = {"Mammal": "Mammal", "Bird": "Avian", "Reptile": "Exotic"}
+
+    animal_preferredSpecialists = {"Mammal": "Mammal",
+                                   "Bird": "Avian",
+                                   "Reptile": "Exotic"}
 
     # List to store set values that can be used across all classifications and species
     animal_preferredSpace = ["Small", "Medium", "Large"]
@@ -32,6 +35,7 @@ class Animal(ABC):
         self.__preferred_environment = preferred_environment
         self.__preferred_space = preferred_space
         self.__health = Health()
+
 
         if isinstance(name, str):
             self.__name = name
@@ -73,7 +77,7 @@ class Animal(ABC):
         else:
             raise TypeError("Preferred space must be a string")
 
-    # Getters for attributes
+    # Getters
 
     def get_name(self):
         return self.__name
@@ -102,7 +106,7 @@ class Animal(ABC):
     def get_health(self):
         return self.__health
 
-    # Setters for attributes
+    # Setters
 
     def set_dietary_requirements(self, dietary_requirements):
         if dietary_requirements not in self.animal_preferredDiet:
@@ -120,19 +124,18 @@ class Animal(ABC):
         self.__species = species
 
     def set_specialisation_needed(self, specialisation_needed):
-        required_specialist = self.animal_preferredSpecialists.get(self.__classification)
+        required_specialist = self.animal_preferredSpecialists.get(self.__classification) # Sets the required specialist to the animals specific classification
         if specialisation_needed == required_specialist:
             self.__specialisation_needed = specialisation_needed
         else:
             raise ValueError(f"Your {self.__species} requires a {required_specialist} veterinarian.")
 
     def set_preferred_environment(self, preferred_environment):
-        preferredEnvironment = self.animal_preferredEnvironment.get(self.__classification)
+        preferredEnvironment = self.animal_preferredEnvironment.get(self.__classification) # Sets the preferred environment to the animals specific environment
         if preferred_environment in preferredEnvironment:
             self.__preferred_environment = preferred_environment
         else:
             raise ValueError(f"Invalid environment for {self.__species}. Please choose from {preferredEnvironment}.")
-
 
     def set_preferred_space(self, preferred_space):
         if preferred_space in self.animal_preferredSpace:
