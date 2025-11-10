@@ -10,10 +10,11 @@ This is my own work as defined by the University's Academic Integrity Policy.
 from abc import ABC, abstractmethod
 
 class Staff(ABC):
+    # Defined class variables before __init__ as variables should be applied to ALL staff members(objects).
     roles = ["Veterinarian, Zookeeper"]
-    used_StaffID = set()
-    def __init__(self, name, staffID, role):
+    used_staffID = set() # Used set() function as the order of staff ID's does not matter
 
+    def __init__(self, name, staffID, role):
         self.__name = name
         self.__staffID = staffID
         self.__role = role
@@ -29,10 +30,10 @@ class Staff(ABC):
             raise TypeError("Role must be a string.")
 
         if isinstance(staffID, int):
-            if staffID > 0 and staffID < 9999:
+            if staffID > 0 and staffID < 9999: # Validation logic to keep staff ID length within 4 digits for practical purposes
                 self.set_staffID(staffID)
             else:
-                raise ValueError("Staff ID must be a 4 digit number.")
+                print("Staff ID must be a 4 digit number.")
         else:
             raise TypeError("Staff ID must be a number.")
 
@@ -51,16 +52,16 @@ class Staff(ABC):
         if role in self.roles:
             self.__role = role
         else:
-            raise ValueError(f"Staff role must be from the list: {self.roles}")
+            print(f"Staff role must be from the list: {self.roles}")
 
     def set_staffID(self, staffID):
-        if staffID in self.used_StaffID:
-            raise ValueError(f"Staff ID: {staffID} already exists. Please enter a unique 4 digit number.")
+        if staffID in self.used_staffID:
+            print(f"Staff ID: {staffID} already exists. Please enter a unique 4 digit number.")
         else:
-            self.used_StaffID.add(staffID)
+            self.used_staffID.add(staffID)
             self.__staffID = staffID
 
     # Methods
     @abstractmethod
-    def duties(self):
+    def duties(self): # Created an abstract duties method as all staff members must be assigned duties
         pass
