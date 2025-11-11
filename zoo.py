@@ -102,35 +102,50 @@ class Zoo:
         else:
             raise TypeError("Staff must be an Staff object.")
 
+    def show_staff(self):
+        for staff in self.__staff:
+            print(f"| \033[1mName:\033[0m {staff.get_name()} | \033[1mRole:\033[0m {staff.get_role()} | \033[1mStaff ID:\033[0m {staff.get_staffID()} |")
+
+    def show_enclosures(self):
+        for enclosure in self.__enclosures:
+            print(f"| \033[1mName:\033[0m {enclosure.get_enclosure_name()} | \033[1mAnimal Assigned:\033[0m {enclosure.get_animal_assigned()} | \033[1mEnvironment:\033[0m {enclosure.get_environment()} | \033[1mCurrent Capacity:\033[0m {enclosure.get_current_capacity()} | \033[1mCleanliness Level:\033[0m {enclosure.get_cleanliness_level()} |")
+
+    def show_animals(self):
+        for animal in self.__animals:
+            print(f"| \033[1mName:\033[0m {animal.get_name()} | \033[1mClassification:\033[0m {animal.get_classification()} | \033[1mSpecies:\033[0m {animal.get_species()} | \033[1mAge:\033[0m {animal.get_age()} | \033[1mHealth Status:\033[0m {animal.get_health().get_health_status()} |")
+
     def daily_routine(self):
+        print("=========================")
         print("== Daily Routine ==")
         for staff in self.__staff:
             staff.duties()
         print("=========================")
 
     def list_animals(self):
+        print("=========================")
         print("== Animals in Zoo ==")
         for animal in self.__animals:
             print(f"| Name: {animal.get_name()} | Classification: {animal.get_classification()} | Species: {animal.get_species()} | Age: {animal.get_age()} | Health Status: {animal.get_health().get_health_status()} |\n")
         print("=========================")
 
     def enclosure_statuses(self):
+        print("=========================")
         print("== Enclosures Statuses ==")
         for enclosure in self.__enclosures:
             enclosure.enclosure_status()
+        print("=========================")
 
     def zoo_report(self):
+        print("=========================")
         print(f"== \033[1m{self.get_name()} Overview\033[0m ==")
         print("=========================")
         print("\n\033[1mStaff:\033[0m")
-        for staff in self.__staff:
-            print(f"| \033[1mName:\033[0m {staff.get_name()} | \033[1mRole:\033[0m {staff.get_role()} | \033[1mStaff ID:\033[0m {staff.get_staffID()} |")
+        self.show_staff()
         print("\n\033[1mEnclosures:\033[0m")
-        for enclosure in self.__enclosures:
-            print(f"| \033[1mName:\033[0m {enclosure.get_enclosure_name()} | \033[1mAnimal Assigned:\033[0m {enclosure.get_animal_assigned()} | \033[1mEnvironment:\033[0m {enclosure.get_environment()} | \033[1mCurrent Capacity:\033[0m {enclosure.get_current_capacity()} | \033[1mCleanliness Level:\033[0m {enclosure.get_cleanliness_level()} |")
+        self.show_enclosures()
         print("\n\033[1mAnimals:\033[0m")
-        for animal in self.__animals:
-            print(f"| \033[1mName:\033[0m {animal.get_name()} | \033[1mClassification:\033[0m {animal.get_classification()} | \033[1mSpecies:\033[0m {animal.get_species()} | \033[1mAge:\033[0m {animal.get_age()} | \033[1mHealth Status:\033[0m {animal.get_health().get_health_status()} |")
+        self.show_animals()
+        print("=========================")
         # Code inspired by:
         # Kodeclik, 2025. How to bold text in python. [Online] Kodeclik.
         # Available at: <https://www.kodeclik.com/how-to-bold-text-in-python/>

@@ -55,7 +55,7 @@ class Zookeeper(Staff):
         if isinstance(enclosure, Enclosure):
             if enclosure in self.__assigned_enclosures:
                 self.__assigned_enclosures.remove(enclosure)
-                print(f"{enclosure.get_enclosure_name()} has been unassigned from {self.get_name()}.\n")
+                print(f"{enclosure.get_enclosure_name()} Enclosure has been unassigned from {self.get_name()}.\n")
             else:
                 raise ValueError(f"Enclosure '{enclosure}' not found.")
         else:

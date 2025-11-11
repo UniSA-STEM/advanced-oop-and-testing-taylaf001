@@ -148,9 +148,12 @@ class Enclosure:
             raise TypeError(f"No animal object exists with this name.")
 
     def list_animals(self): # Display all animals within the enclosure
-        print(f"\033[1mAnimals Enclosed:\033[0m\n")
+        print(f"\033[1mAnimals in Enclosure - {self.__enclosure_name}:\033[0m\n")
         for key, value in self.__animalsencloseddict.items(): # Display each animal and their details in the stored dictionary
             print(f"\033[1mName:\033[0m {key} | \033[1mSpecies:\033[0m {value.get_species()} | \033[1mAge:\033[0m {value.get_age()} | \033[1mClassification:\033[0m {value.get_classification()}")
+        if not self.__animalsencloseddict.items():
+            print("No animals in Enclosure.")
+            print("---------------")
 
     def enclosure_status(self):
         print("=========================")
