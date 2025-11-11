@@ -19,39 +19,86 @@ class Zoo:
         self.__animals = []
         self.__staff = []
 
+        if isinstance(name, str):
+            self.set_name(name)
+        else:
+            raise TypeError("Name must be a string.")
+
+    # Getters
+    def get_name(self):
+        return self.__name
+
+    def get_enclosures(self):
+        return self.__enclosures
+
+    def get_animals(self):
+        return self.__animals
+
+    def get_staff(self):
+        return self.__staff
+
+    # Setters
+    def set_name(self, name):
+        self.__name = name
+
+    # Methods
     def add_animal(self, animal):
         if isinstance(animal, Animal):
-            self.__animals.append(animal)
+            if animal not in self.get_animals():
+                self.__animals.append(animal)
+                print(f"{animal.get_name()} has been introduced into the zoo.")
+            else:
+                raise ValueError("Animal already exists in the zoo.")
         else:
             raise TypeError("Animal must be an Animal object.")
 
     def remove_animal(self, animal):
         if isinstance(animal, Animal):
-            self.__animals.remove(animal)
+            if animal in self.get_animals():
+                self.__animals.remove(animal)
+                print(f"{animal.get_name()} has been removed from the zoo.")
+            else:
+                raise ValueError("Animal not in the zoo.")
         else:
             raise TypeError("Animal must be an Animal object.")
 
     def add_enclosure(self, enclosure):
         if isinstance(enclosure, Enclosure):
-            self.__enclosures.append(enclosure)
+            if enclosure not in self.get_enclosures():
+                self.__enclosures.append(enclosure)
+                print(f"{enclosure.get_enclosure_name()} has been built into the zoo.")
+            else:
+                raise ValueError("Enclosure already exists in the zoo.")
         else:
             raise TypeError("Enclosure must be an Enclosure object.")
 
     def remove_enclosure(self, enclosure):
         if isinstance(enclosure, Enclosure):
-            self.__enclosures.remove(enclosure)
+            if enclosure in self.get_enclosures():
+                self.__enclosures.remove(enclosure)
+                print(f"{enclosure.get_enclosure_name()} has been demolished and land has been flattened.")
+            else:
+                raise ValueError("Enclosure does not exist in the zoo.")
         else:
             raise TypeError("Enclosure must be an Enclosure object.")
 
     def add_staff(self, staff):
         if isinstance(staff, Staff):
-            self.__staff.append(staff)
+            if staff not in self.get_staff():
+                self.__staff.append(staff)
+                print(f"{staff.get_name()} has been hired and inducted into the zoo.")
+            else:
+                raise ValueError("Staff already exists in the zoo.")
         else:
             raise TypeError("Staff must be an Staff object.")
 
     def remove_staff(self, staff):
         if isinstance(staff, Staff):
-            self.__staff.remove(staff)
+            if staff in self.get_staff():
+                self.__staff.remove(staff)
+                print(f"{staff.get_name()} has been removed from the zoo.")
+            else:
+                raise ValueError("Staff does not exist in the zoo.")
         else:
             raise TypeError("Staff must be an Staff object.")
 

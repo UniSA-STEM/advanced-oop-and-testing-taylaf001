@@ -69,4 +69,4 @@ class Staff(ABC):
 
     # String conversion method
     def __str__(self):
-        return f"{self.__role} {self.__name} has been hired."
+        return f"{self.__role} {self.__name} has been generated and is ready to be assigned."

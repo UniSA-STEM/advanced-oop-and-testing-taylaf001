@@ -161,6 +161,5 @@ class Animal(ABC):
     def sleeping(self):
         pass
 
-    # String conversion
     def __str__(self):
-        return f"Your animal, {self.__name}, has been successfully introduced into the Zoo.\n"
+        return f"Animal: {self.get_name()} has been generated and is ready to be assigned."

@@ -119,7 +119,7 @@ class Enclosure:
                 if animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size:
                     self.set_animalsenclosed(animal)
                     self.set_current_capacity(self.get_current_capacity()+1)
-                    print(f"{animal.get_name()} has been successfully introduced into the {self.__enclosure_name}.\n")
+                    print(f"{animal.get_name()} has been successfully introduced into the {self.__enclosure_name} Enclosure.\n")
                 elif animal.get_classification() == self.__animal_assigned and self.__current_capacity == self.__max_capacity and animal.get_preferred_environment() == self.__environment and animal.get_preferred_space() == self.__size:
                     raise ValueError(f"Enclosure capacity full. Remove an animal or build a new enclosure.")
                 elif animal.get_classification() == self.__animal_assigned and self.__current_capacity < self.__max_capacity and animal.get_preferred_environment() != self.__environment and animal.get_preferred_space() == self.__size:
@@ -141,6 +141,7 @@ class Enclosure:
                 if animal.get_name() in self.__animalsencloseddict:
                     self.__animalsencloseddict.pop(animal.get_name())
                     self.set_current_capacity(self.get_current_capacity()-1)
+                    print(f"{animal.get_name()} has been successfully removed from the enclosure.")
                 else:
                     raise ValueError(f"{animal.get_name()} cannot be removed as it's not in the enclosure.")
             else:
@@ -170,6 +171,5 @@ class Enclosure:
         # Available at: <https://www.kodeclik.com/how-to-bold-text-in-python/>
         # [Accessed 6 November 2025].
 
-    # String conversion method
     def __str__(self):
-        return f"{self.__enclosure_name} has successfully been added to the zoo.\n"
+        return f"Enclosure: {self.get_enclosure_name()} has been generated and is ready to be assigned."
