@@ -10,7 +10,7 @@ from datetime import datetime
 
 class Health:
     # Defined class variables before __init__ as variables should be applied and used by all health objects.
-    severity = ["Minor", "Mild", "Major", "Critical"]
+    severity = ["Nil", "Minor", "Mild", "Major", "Critical"]
     health_statuses = ["Healthy", "Sick", "Under Treatment"]
     health_issues = {"Nil": ["No Issues"],
                      "Injury": ["Broken Bone", "Fractured Bone", "Sprain", "Wound", "Bite", "Bruising"],
@@ -96,7 +96,7 @@ class Health:
                 self.__health_issue = health_issue
                 self.__issue_description = issue_description
                 self.__treatment_notes = treatment_notes
-                if severity in severity:
+                if severity in self.severity:
                     self.__severity = severity
                 else:
                     raise ValueError(f"Severity must be selected from the following: {self.severity}")
