@@ -43,7 +43,19 @@ class Zookeeper(Staff):
 
     def assign_enclosure(self, enclosure):
         if isinstance(enclosure, Enclosure):
-            self.set_assign_enclosure(enclosure)
+            if enclosure not in self.__assigned_enclosures:
+                self.set_assign_enclosure(enclosure)
+            else:
+                raise ValueError(f"Enclosure '{enclosure}' already assigned.")
+        else:
+            raise TypeError(f"No enclosure object exists with this name.")
+
+    def unassign_enclosure(self, enclosure):
+        if isinstance(enclosure, Enclosure):
+            if enclosure in self.__assigned_enclosures:
+                self.__assigned_enclosures.remove(enclosure)
+            else:
+                raise ValueError(f"Enclosure '{enclosure}' not found.")
         else:
             raise TypeError(f"No enclosure object exists with this name.")
 
