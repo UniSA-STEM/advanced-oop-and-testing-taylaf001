@@ -28,8 +28,50 @@ class TestMammal:
         assert mammal1.get_fur_type() == "None"
 
     def test_raises(self):
-        with pytest.raises(TypeError): # Testing non string and invalid attribute inputs
-            Mammal(7, "Mammmdryfmal", "Elephant", "14", "Plants", 80, "None", 100, 9)
+        with pytest.raises(TypeError):  # NAME - Incorrect Type
+            Mammal(345, "Mammal", "Elephant", 14, "Herbivore", "Mammal", "Savanna", "Large", "None")
+
+        with pytest.raises(ValueError):  # CLASSIFICATION - Incorrect Value
+            Mammal("Ellie", "Elephant", "Elephant", 14, "Herbivore", "Mammal", "Savanna", "Large", "None")
+
+        with pytest.raises(TypeError):  # CLASSIFICATION - Incorrect Type
+            Mammal("Ellie", 345, "Elephant", 14, "Herbivore", "Mammal", "Savanna", "Large", "None")
+
+        with pytest.raises(TypeError):  # SPECIES - Incorrect Type
+            Mammal("Ellie", "Mammal", 8678, 14, "Herbivore", "Mammal", "Savanna", "Large", "None")
+
+        with pytest.raises(TypeError):  # AGE - Incorrect Type
+            Mammal("Ellie", "Mammal", "Elephant", "14", "Herbivore", "Mammal", "Savanna", "Large", "None")
+
+        with pytest.raises(TypeError):  # DIETARY REQUIREMENTS - Incorrect Type
+            Mammal("Ellie", "Mammal", "Elephant", 14, 354, "Mammal", "Savanna", "Large", "None")
+
+        with pytest.raises(ValueError):  # DIETARY REQUIREMENTS - Incorrect Value
+            Mammal("Ellie", "Mammal", "Elephant", 14, "Plants", "Mammal", "Savanna", "Large", "None")
+
+        with pytest.raises(TypeError):  # SPECIALISATION NEEDED - Incorrect Type
+            Mammal("Ellie", "Mammal", "Elephant", 14, "Herbivore", 345, "Savanna", "Large", "None")
+
+        with pytest.raises(ValueError):  # SPECIALISATION NEEDED - Incorrect Value
+            Mammal("Ellie", "Mammal", "Elephant", 14, "Herbivore", "Elephant Vet", "Savanna", "Large", "None")
+
+        with pytest.raises(TypeError):  # PREFERRED ENVIRONMENT - Incorrect Type
+            Mammal("Ellie", "Mammal", "Elephant", 14, "Herbivore", "Mammal", 567, "Large", "None")
+
+        with pytest.raises(ValueError):  # PREFERRED ENVIRONMENT - Incorrect Value
+            Mammal("Ellie", "Mammal", "Elephant", 14, "Herbivore", "Mammal", "Arid", "Large", "None")
+
+        with pytest.raises(TypeError):  # PREFERRED SPACE - Incorrect Type
+            Mammal("Ellie", "Mammal", "Elephant", 14, "Herbivore", "Mammal", "Savanna", 54363, "None")
+
+        with pytest.raises(ValueError):  # PREFERRED SPACE - Incorrect Value
+            Mammal("Ellie", "Mammal", "Elephant", 14, "Herbivore", "Mammal", "Savanna", "Huge Plains", "None")
+
+        with pytest.raises(TypeError):  # FUR TYPE - Incorrect Type
+            Mammal("Ellie", "Mammal", "Elephant", 14, "Herbivore", "Mammal", "Savanna", "Large", 456)
+
+        with pytest.raises(ValueError):  # FUR TYPE - Incorrect Value
+            Mammal("Ellie", "Mammal", "Elephant", 14, "Herbivore", "Mammal", "Savanna", "Large", "Stubble")
 
     def test_healthReport(self, mammal1): # Health report generation test
         mammal1.health_report()

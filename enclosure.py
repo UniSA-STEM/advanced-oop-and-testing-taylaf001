@@ -102,7 +102,10 @@ class Enclosure:
         self.__animalsencloseddict.update({animal.get_name(): animal}) # Add animal to enclosed animals dictionary
 
     def set_current_capacity(self, current_capacity):
-        self.__current_capacity = current_capacity
+        if isinstance(current_capacity, int):
+            self.__current_capacity = current_capacity
+        else:
+            raise TypeError("Current capacity must be a number.")
 
     # Methods
     def add_animal(self, animal): # Adds animal into enclosure IF their health status is not sick or under treatment

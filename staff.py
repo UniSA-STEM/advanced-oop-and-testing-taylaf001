@@ -11,7 +11,7 @@ from abc import ABC, abstractmethod
 
 class Staff(ABC):
     # Defined class variables before __init__ as variables should be applied to ALL staff members(objects).
-    roles = ["Veterinarian, Zookeeper"]
+    roles = ["Veterinarian", "Zookeeper"]
     used_staffID = set() # Used set() function as the order of staff ID's does not matter
 
     def __init__(self, name, staffID, role):
@@ -31,7 +31,7 @@ class Staff(ABC):
             raise TypeError("Role must be a string.")
 
         if isinstance(staffID, int):
-            if staffID > 0 and staffID < 9999: # Validation logic to keep staff ID length within 4 digits for practical purposes
+            if staffID > 1000 and staffID < 9999: # Validation logic to keep staff ID length within 4 digits for practical purposes
                 self.set_staffID(staffID)
             else:
                 raise ValueError("Staff ID must be a 4 digit number.")

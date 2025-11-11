@@ -27,9 +27,49 @@ class TestBird:
         assert bird1.get_preferred_space() == "Large"
         assert bird1.get_can_fly() == True
 
-    def test_raises(self):
-        with pytest.raises(TypeError): # Testing non string and invalid attribute inputs
-            Bird(9, "Birdyyyy", "idk", "25243", "Meat", 80, "Desert", 100, 2)
+    def test_raises(self): # Testing invalid inputs for each attributes
+        with pytest.raises(TypeError): # NAME - Incorrect Type
+            Bird(872, "Bird", "Macaw", 39, "Omnivore", "Avian", "Tropical", "Large", True)
+
+        with pytest.raises(ValueError): # CLASSIFICATION - Incorrect Value
+            Bird("Mike", "Idk", "Macaw", 39, "Omnivore", "Avian", "Tropical", "Large", True)
+
+        with pytest.raises(TypeError): # CLASSIFICATION - Incorrect Type
+            Bird("Mike", 345, "Macaw", 39, "Omnivore", "Avian", "Tropical", "Large", True)
+
+        with pytest.raises(TypeError): # SPECIES - Incorrect Type
+            Bird("Mike", "Bird", 45, 39, "Omnivore", "Avian", "Tropical", "Large", True)
+
+        with pytest.raises(TypeError): # AGE - Incorrect Type
+            Bird("Mike", "Bird", "Macaw", "39", "Omnivore", "Avian", "Tropical", "Large", True)
+
+        with pytest.raises(TypeError): # DIETARY REQUIREMENTS - Incorrect Type
+            Bird("Mike", "Bird", "Macaw", 39, 456, "Avian", "Tropical", "Large", True)
+
+        with pytest.raises(ValueError): # DIETARY REQUIREMENTS - Incorrect Value
+            Bird("Mike", "Bird", "Macaw", 39, "Plants and Seeds", "Avian", "Tropical", "Large", True)
+
+        with pytest.raises(TypeError): # SPECIALISATION NEEDED - Incorrect Type
+            Bird("Mike", "Bird", "Macaw", 39, "Omnivore", 456, "Tropical", "Large", True)
+
+        with pytest.raises(ValueError): # SPECIALISATION NEEDED - Incorrect Value
+            Bird("Mike", "Bird", "Macaw", 39, "Omnivore", "Bird Vet", "Tropical", "Large", True)
+
+        with pytest.raises(TypeError): # PREFERRED ENVIRONMENT - Incorrect Type
+            Bird("Mike", "Bird", "Macaw", 39, "Omnivore", "Avian", 345623, "Large", True)
+
+        with pytest.raises(ValueError): # PREFERRED ENVIRONMENT - Incorrect Value
+            Bird("Mike", "Bird", "Macaw", 39, "Omnivore", "Avian", "Outdoors", "Large", True)
+
+        with pytest.raises(TypeError): # PREFERRED SPACE - Incorrect Type
+            Bird("Mike", "Bird", "Macaw", 39, "Omnivore", "Avian", "Tropical", 100, True)
+
+        with pytest.raises(ValueError): # PREFERRED SPACE - Incorrect Value
+            Bird("Mike", "Bird", "Macaw", 39, "Omnivore", "Avian", "Tropical", "Football Field", True)
+
+        with pytest.raises(TypeError): # CAN FLY - Incorrect Type
+            Bird("Mike", "Bird", "Macaw", 39, "Omnivore", "Avian", "Tropical", "Large", "True")
+
 
     def test_healthReport(self, bird1): # Health report generation test
         bird1.health_report()

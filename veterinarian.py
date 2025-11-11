@@ -46,13 +46,26 @@ class Veterinarian(Staff):
             if animal.get_specialisation_needed() == self.get_specialisation():
                 self.__assigned_animals.append(animal)
             else:
-                print(f"Veterinarian selected does not have the correct specialisation for your animal. Please select a {animal.get_specialisation_needed()} veterinarian.")
+                raise ValueError(f"Veterinarian selected does not have the correct specialisation for your animal. Please select a {animal.get_specialisation_needed()} veterinarian.")
         else:
             raise TypeError(f"Animal assigned to veterinarian must be an animal object already in the zoo.")
+
     # Methods
     def assign_animal(self, animal):
         if isinstance(animal, Animal):
-            self.set_assign_animal(animal)
+            if animal not in self.__assigned_animals:
+                self.set_assign_animal(animal)
+            else:
+                raise ValueError("Animal already assigned to veterinarian.")
+        else:
+            raise TypeError("Animal object not found with name provided.")
+
+    def unassign_animal(self, animal):
+        if isinstance(animal, Animal):
+            if animal in self.__assigned_animals:
+                self.__assigned_animals.remove(animal)
+            else:
+                raise ValueError("No animal with such name is assigned to the veterinarian.")
         else:
             raise TypeError("Animal object not found with name provided.")
 

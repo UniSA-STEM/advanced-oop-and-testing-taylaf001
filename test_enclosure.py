@@ -35,8 +35,29 @@ class TestEnclosure:
         assert reptileEnclosure.get_max_capacity() == 5
 
     def test_raises(self):
-        with pytest.raises(TypeError):  # Testing non string and invalid attribute inputs
-            Enclosure(4, 100, "City", "Elephant", "5")
+        with pytest.raises(TypeError): # NAME - Incorrect Type
+            Enclosure(345, "Large", "Aquatic", "Reptile", 5)
+
+        with pytest.raises(TypeError): # SIZE - Incorrect Type
+            Enclosure("Big Reptiles", 345, "Aquatic", "Reptile", 5)
+
+        with pytest.raises(ValueError): # SIZE - Incorrect Value
+            Enclosure("Big Reptiles", "Kinda Small", "Aquatic", "Reptile", 5)
+
+        with pytest.raises(TypeError): # ENVIRONMENT - Incorrect Type
+            Enclosure("Big Reptiles", "Large", 234, "Reptile", 5)
+
+        with pytest.raises(ValueError):  # ENVIRONMENT - Incorrect Value
+            Enclosure("Big Reptiles", "Large", "Ocean", "Reptile", 5)
+
+        with pytest.raises(TypeError):  # ANIMAL ASSIGNED - Incorrect Type
+            Enclosure("Big Reptiles", "Large", "Aquatic", 345, 5)
+
+        with pytest.raises(ValueError):  # ANIMAL ASSIGNED - Incorrect Value
+            Enclosure("Big Reptiles", "Large", "Aquatic", "Idksdf", 5)
+
+        with pytest.raises(TypeError):  # MAX CAPACITY - Incorrect Type
+            Enclosure("Big Reptiles", "Large", "Aquatic", "Reptile", "5")
 
     def test_validateEnvironment(self, reptileEnclosure):
         reptileEnclosure.set_environment("Savanna")
