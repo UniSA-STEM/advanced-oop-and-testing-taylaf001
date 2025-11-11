@@ -49,8 +49,6 @@ class Enclosure:
         else:
             raise TypeError("Max capacity must be a number.")
 
-        print(self)
-
     # Getters
     def get_enclosure_name(self):
         return self.__enclosure_name
@@ -141,7 +139,7 @@ class Enclosure:
                 if animal.get_name() in self.__animalsencloseddict:
                     self.__animalsencloseddict.pop(animal.get_name())
                     self.set_current_capacity(self.get_current_capacity()-1)
-                    print(f"{animal.get_name()} has been successfully removed from the enclosure.")
+                    print(f"{animal.get_name()} has been successfully removed from the enclosure.\n")
                 else:
                     raise ValueError(f"{animal.get_name()} cannot be removed as it's not in the enclosure.")
             else:
@@ -155,21 +153,19 @@ class Enclosure:
             print(f"\033[1mName:\033[0m {key} | \033[1mSpecies:\033[0m {value.get_species()} | \033[1mAge:\033[0m {value.get_age()} | \033[1mClassification:\033[0m {value.get_classification()}")
 
     def enclosure_status(self):
-        print("------------------------")
-        print(f"\033[1m{self.__enclosure_name} Report:\033[0m")
-        print("------------------------")
+        print("=========================")
+        print(f"\033[1m{self.__enclosure_name} Enclosure Report:\033[0m")
+        print("=========================")
         print(f"\033[1mEnclosure Environment:\033[0m {self.__environment}")
         print(f"\033[1mSpecies Assigned:\033[0m {self.__animal_assigned}")
         print(f"\033[1mCleanliness Level:\033[0m {self.__cleanliness_level}")
         print(f"\033[1mCurrent Capacity:\033[0m {self.__current_capacity}")
         print(f"\033[1mMax Capacity:\033[0m {self.__max_capacity}")
-        print("----")
+        print("--------")
         self.list_animals()
-        print("----------------------")
+        print("=========================")
         # Code inspired by:
         # Kodeclik, 2025. How to bold text in python. [Online] Kodeclik.
         # Available at: <https://www.kodeclik.com/how-to-bold-text-in-python/>
         # [Accessed 6 November 2025].
 
-    def __str__(self):
-        return f"Enclosure: {self.get_enclosure_name()} has been generated and is ready to be assigned."

@@ -38,13 +38,14 @@ class Zookeeper(Staff):
         print(f"Zookeeper {self.get_name()} is performing assigned duties.")
         for enclosure in self.__assigned_enclosures:
             for animal in enclosure.get_animalsenclosedlist():
-                print(f"Zookeeper {self.get_name()} has successfully fed {animal.get_name()}.")
-            print(f"Zookeeper {self.get_name()} has thoroughly cleaned enclosure '{enclosure.get_enclosure_Name()}'.")
+                print(f"Zookeeper {self.get_name()} has successfully fed {animal}.")
+            print(f"Zookeeper {self.get_name()} has thoroughly cleaned enclosure '{enclosure.get_enclosure_name()}'.\n")
 
     def assign_enclosure(self, enclosure):
         if isinstance(enclosure, Enclosure):
             if enclosure not in self.__assigned_enclosures:
                 self.set_assign_enclosure(enclosure)
+                print(f"Enclosure {enclosure.get_enclosure_name()} has been assigned to {self.get_name()}.\n")
             else:
                 raise ValueError(f"Enclosure '{enclosure}' already assigned.")
         else:
@@ -54,6 +55,7 @@ class Zookeeper(Staff):
         if isinstance(enclosure, Enclosure):
             if enclosure in self.__assigned_enclosures:
                 self.__assigned_enclosures.remove(enclosure)
+                print(f"{enclosure.get_enclosure_name()} has been unassigned from {self.get_name()}.\n")
             else:
                 raise ValueError(f"Enclosure '{enclosure}' not found.")
         else:
@@ -63,7 +65,7 @@ class Zookeeper(Staff):
         if isinstance(animal, Animal):
             for enclosure in self.__assigned_enclosures: # Access individual enclosures within assigned enclosures list
                 if animal in enclosure.get_animalsenclosedlist(): # Access specific animal within the individual enclosure
-                    print(f"Zookeeper {self.get_name()} has successfully fed {animal.get_name()}.")
+                    print(f"Zookeeper {self.get_name()} has successfully fed {animal.get_name()}.\n")
                     return
             print(f"No animal with this name found in any enclosures.")
         else:
@@ -72,7 +74,7 @@ class Zookeeper(Staff):
     def clean_enclosure(self, enclosure):
         if isinstance(enclosure, Enclosure):
             if enclosure in self.__assigned_enclosures:
-                print(f"Zookeeper {self.get_name()} has successfully cleaned enclosure '{enclosure.get_enclosure_name()}'.")
+                print(f"Zookeeper {self.get_name()} has successfully cleaned enclosure '{enclosure.get_enclosure_name()}'.\n")
                 return
             else:
                 print("No enclosure with this name has been assigned to Zookeeper.")

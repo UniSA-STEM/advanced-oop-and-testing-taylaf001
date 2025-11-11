@@ -55,6 +55,7 @@ class Veterinarian(Staff):
         if isinstance(animal, Animal):
             if animal not in self.__assigned_animals:
                 self.set_assign_animal(animal)
+                print(f"{animal.get_name()} has been assigned to {self.get_name()}.\n")
             else:
                 raise ValueError("Animal already assigned to veterinarian.")
         else:
@@ -64,6 +65,7 @@ class Veterinarian(Staff):
         if isinstance(animal, Animal):
             if animal in self.__assigned_animals:
                 self.__assigned_animals.remove(animal)
+                print(f"{animal.get_name()} has been unassigned from {self.get_name()}.\n")
             else:
                 raise ValueError("No animal with such name is assigned to the veterinarian.")
         else:
@@ -72,12 +74,12 @@ class Veterinarian(Staff):
     def duties(self): # Abstract method from parent staff class performs all individual duties
         print(f"Dr {self.get_name()} is performing assigned duties.")
         for animal in self.get_assigned_animals():
-            print(f"Dr {self.get_name()} has successfully performed a health check on {animal.get_name()}.")
+            print(f"Dr {self.get_name()} has successfully performed a health check on {animal.get_name()}.\n")
 
     def perform_healthcheck(self, animal): # Perform health check on specific animal
         if isinstance(animal, Animal): # Validation that the animal passed through is a valid Animal object.
             if animal in self.get_assigned_animals():
-                print(f"Dr {self.get_name()} is conducting a health check on {animal.get_name()}.")
+                print(f"Dr {self.get_name()} is conducting a health check on {animal.get_name()}.\n")
             else:
                 raise ValueError(f"Animal not in assigned list. Please select an animal from the list: {self.get_assigned_animals()}")
         else:

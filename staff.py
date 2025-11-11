@@ -66,7 +66,3 @@ class Staff(ABC):
     @abstractmethod
     def duties(self): # Created an abstract duties method as all staff members must be assigned duties
         pass
-
-    # String conversion method
-    def __str__(self):
-        return f"{self.__role} {self.__name} has been generated and is ready to be assigned."

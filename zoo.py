@@ -44,9 +44,9 @@ class Zoo:
     # Methods
     def add_animal(self, animal):
         if isinstance(animal, Animal):
-            if animal not in self.get_animals():
+            if animal not in self.__animals:
                 self.__animals.append(animal)
-                print(f"{animal.get_name()} has been introduced into the zoo.")
+                print(f"{animal.get_name()} has been introduced into the zoo.\n")
             else:
                 raise ValueError("Animal already exists in the zoo.")
         else:
@@ -54,9 +54,9 @@ class Zoo:
 
     def remove_animal(self, animal):
         if isinstance(animal, Animal):
-            if animal in self.get_animals():
+            if animal in self.__animals:
                 self.__animals.remove(animal)
-                print(f"{animal.get_name()} has been removed from the zoo.")
+                print(f"{animal.get_name()} has been removed from the zoo.\n")
             else:
                 raise ValueError("Animal not in the zoo.")
         else:
@@ -64,9 +64,9 @@ class Zoo:
 
     def add_enclosure(self, enclosure):
         if isinstance(enclosure, Enclosure):
-            if enclosure not in self.get_enclosures():
+            if enclosure not in self.__enclosures:
                 self.__enclosures.append(enclosure)
-                print(f"{enclosure.get_enclosure_name()} has been built into the zoo.")
+                print(f"Enclosure: {enclosure.get_enclosure_name()} has been built in the zoo.\n")
             else:
                 raise ValueError("Enclosure already exists in the zoo.")
         else:
@@ -74,9 +74,9 @@ class Zoo:
 
     def remove_enclosure(self, enclosure):
         if isinstance(enclosure, Enclosure):
-            if enclosure in self.get_enclosures():
+            if enclosure in self.__enclosures:
                 self.__enclosures.remove(enclosure)
-                print(f"{enclosure.get_enclosure_name()} has been demolished and land has been flattened.")
+                print(f"{enclosure.get_enclosure_name()} has been demolished and land has been flattened.\n")
             else:
                 raise ValueError("Enclosure does not exist in the zoo.")
         else:
@@ -84,9 +84,9 @@ class Zoo:
 
     def add_staff(self, staff):
         if isinstance(staff, Staff):
-            if staff not in self.get_staff():
+            if staff not in self.__staff:
                 self.__staff.append(staff)
-                print(f"{staff.get_name()} has been hired and inducted into the zoo.")
+                print(f"{staff.get_role()} {staff.get_name()} has been hired and inducted into the zoo.\n")
             else:
                 raise ValueError("Staff already exists in the zoo.")
         else:
@@ -94,9 +94,9 @@ class Zoo:
 
     def remove_staff(self, staff):
         if isinstance(staff, Staff):
-            if staff in self.get_staff():
+            if staff in self.__staff:
                 self.__staff.remove(staff)
-                print(f"{staff.get_name()} has been removed from the zoo.")
+                print(f"{staff.get_name()} has been removed from the zoo.\n")
             else:
                 raise ValueError("Staff does not exist in the zoo.")
         else:
@@ -106,20 +106,35 @@ class Zoo:
         print("== Daily Routine ==")
         for staff in self.__staff:
             staff.duties()
-        print("===================")
+        print("=========================")
 
     def list_animals(self):
         print("== Animals in Zoo ==")
         for animal in self.__animals:
-            print(f"| Name:{animal.get_name()} | Classification:{animal.get_classification()} - Species:{animal.get_species()} | Age:{animal.get_age()} | Health Status:{animal.health.get_health_status()} |\n")
-        print("====================")
+            print(f"| Name: {animal.get_name()} | Classification: {animal.get_classification()} | Species: {animal.get_species()} | Age: {animal.get_age()} | Health Status: {animal.get_health().get_health_status()} |\n")
+        print("=========================")
 
     def enclosure_statuses(self):
-        print("== Enclosures Statuses==")
+        print("== Enclosures Statuses ==")
         for enclosure in self.__enclosures:
-            print(f"{enclosure.enclosure_status()}\n")
-        print("====================")
+            enclosure.enclosure_status()
 
+    def zoo_report(self):
+        print(f"== \033[1m{self.get_name()} Overview\033[0m ==")
+        print("=========================")
+        print("\n\033[1mStaff:\033[0m")
+        for staff in self.__staff:
+            print(f"| \033[1mName:\033[0m {staff.get_name()} | \033[1mRole:\033[0m {staff.get_role()} | \033[1mStaff ID:\033[0m {staff.get_staffID()} |")
+        print("\n\033[1mEnclosures:\033[0m")
+        for enclosure in self.__enclosures:
+            print(f"| \033[1mName:\033[0m {enclosure.get_enclosure_name()} | \033[1mAnimal Assigned:\033[0m {enclosure.get_animal_assigned()} | \033[1mEnvironment:\033[0m {enclosure.get_environment()} | \033[1mCurrent Capacity:\033[0m {enclosure.get_current_capacity()} | \033[1mCleanliness Level:\033[0m {enclosure.get_cleanliness_level()} |")
+        print("\n\033[1mAnimals:\033[0m")
+        for animal in self.__animals:
+            print(f"| \033[1mName:\033[0m {animal.get_name()} | \033[1mClassification:\033[0m {animal.get_classification()} | \033[1mSpecies:\033[0m {animal.get_species()} | \033[1mAge:\033[0m {animal.get_age()} | \033[1mHealth Status:\033[0m {animal.get_health().get_health_status()} |")
+        # Code inspired by:
+        # Kodeclik, 2025. How to bold text in python. [Online] Kodeclik.
+        # Available at: <https://www.kodeclik.com/how-to-bold-text-in-python/>
+        # [Accessed 6 November 2025].
 
 
 

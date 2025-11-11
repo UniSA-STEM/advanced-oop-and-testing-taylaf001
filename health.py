@@ -114,9 +114,9 @@ class Health:
         self.set_health_status(health_status)
 
     def generate_animalreport(self, animal_name, animal_classification, animal_species, animal_age): # Generates a health report for an individual animal
-        print("------------------------")
+        print("============================")
         print("\033[1mHealth Report\033[0m")
-        print("------------------------")
+        print("============================")
         print(f"\033[1mName:\033[0m {animal_name}")
         print(f"\033[1mClassification:\033[0m {animal_classification}")
         print(f"\033[1mSpecies:\033[0m {animal_species}")
@@ -128,7 +128,6 @@ class Health:
         print(f"Health Issue: \033[1mDate:\033[0m {self.__date} | \033[1m{self.__health_issuecategory}\033[0m- {self.__health_issue} | \033[1mDescription:\033[0m {self.__issue_description} | \033[1mSeverity:\033[0m {self.__severity} | \033[1mTreatment Notes:\033[0m {self.__treatment_notes}")
         print("------------------------")
         print("\033[1mPast Medical History:\033[0m")
-        print("----")
         for healthRecord in self.__health_history:
             print(f" \033[1mDate:\033[0m {healthRecord[0]} | \033[1m{healthRecord[1]}\033[0m: {healthRecord[2]} | \033[1mDescription:\033[0m {healthRecord[3]} | \033[1mSeverity:\033[0m {healthRecord[4]} | \033[1mTreatment Notes:\033[0m {healthRecord[5]}\n")
         print("------------------------")
@@ -138,6 +137,3 @@ class Health:
         # Kodeclik, 2025. How to bold text in python. [Online] Kodeclik.
         # Available at: <https://www.kodeclik.com/how-to-bold-text-in-python/>
         # [Accessed 6 November 2025].
-
-    def __str__(self):
-        return f"Health Profile has been successfully created.\n"
